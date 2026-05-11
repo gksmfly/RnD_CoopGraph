@@ -1,0 +1,16 @@
+# requirements.txt
+# Python 의존성 패키지
+# 설명: NTIS 데이터 수집에 필요한 라이브러리들
+# 설치: pip install -r requirements.txt
+
+# HTTP 요청
+requests==2.31.0
+
+# 데이터 처리 (CSV, DataFrame)
+pandas==2.2.0
+
+# 환경 변수 관리 (.env 파일 로드)
+python-dotenv==1.0.0
+
+# XML 파싱 (NTIS API 응답 처리)
+lxml==4.9.4
