@@ -1,4 +1,4 @@
-# RnD CoopGraph - 데이터 수집 (서연 담당)
+# RnD CoopGraph
 
 NTIS Open API를 사용해 국가 R&D 과제 데이터(과제, 논문, 특허) 자동 수집
 
@@ -41,18 +41,3 @@ ls data/raw/
 - `project` - 과제검색 (ProjectID, Name, Organization, Budget, TechnologyClassification, Abstract, Goal)
 - `rpaper` - 논문검색 (ProjectID, Title, Authors, Year, Abstract)
 - `rpatent` - 특허검색 (ProjectID, Title, Number, Inventor, Abstract)
-
-**기본 키워드** (collect_data.py에서 수정 가능):
-- AI 반도체
-- 온디바이스 AI
-- PIM
-- 배터리
-
-## 📤 다음 단계
-
-**하진이에게 전달**:
-```
-data/raw/ 폴더의 모든 CSV 파일들
-```
-
-하진이가 데이터 정제 및 문서 변환을 진행합니다.
