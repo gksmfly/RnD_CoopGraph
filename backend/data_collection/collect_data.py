@@ -16,7 +16,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # .env 파일 로드
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 env_path = PROJECT_ROOT / ".env"
 load_dotenv(env_path)
 
@@ -71,29 +71,35 @@ def collect_data():
     saved_pages = 0
     failed_jobs = 0
 
-    # 수집 설정: (키워드, 연도 범위)
-    search_configs = [
-        ("AI 반도체", 2020, 2025),
-        ("온디바이스 AI", 2020, 2025),
-        ("PIM", 2020, 2025),
-        ("배터리", 2020, 2025),
-    ]
+    # 핵심 키워드: project + rpaper + rpatent 전부 수집
+    core_keywords = ["AI 반도체", "온디바이스 AI", "PIM", "NPU", "뉴로모픽"]
 
-    collections = ["project", "rpaper", "rpatent"]
+    # 보조 키워드: project만 수집
+    aux_keywords = ["엣지 컴퓨팅", "시스템반도체", "딥러닝 가속기", "추론 엔진", "DRAM"]
 
-    for keyword, start_year, end_year in search_configs:
+    YEAR_START, YEAR_END = 2020, 2024
+    MAX_PAGES = 10  # 조합당 최대 1,000건
+
+    # (키워드, 컬렉션 목록) 형태로 작업 목록 구성
+    jobs = (
+        [(kw, ["project", "rpaper", "rpatent"]) for kw in core_keywords]
+        + [(kw, ["project"]) for kw in aux_keywords]
+    )
+
+    for keyword, target_collections in jobs:
         logger.info(f"\n{'='*60}")
-        logger.info(f"Collecting data for: {keyword} ({start_year}-{end_year})")
+        logger.info(f"Collecting data for: {keyword} ({YEAR_START}-{YEAR_END})")
         logger.info(f"{'='*60}")
 
-        for collection in collections:
+        for collection in target_collections:
             try:
-                target_dir = RAW_DIR / f"{collection}_{safe_name(keyword)}_{start_year}_{end_year}"
+                target_dir = RAW_DIR / f"{collection}_{safe_name(keyword)}_{YEAR_START}_{YEAR_END}"
                 target_dir.mkdir(parents=True, exist_ok=True)
 
                 saved_for_job = 0
+                page_no = 1
                 with (target_dir / "request_urls.txt").open("w", encoding="utf-8") as url_log:
-                    for page_no in range(1, 6):
+                    while page_no <= MAX_PAGES:
                         response = client.fetch_raw(
                             collection=collection,
                             keyword=keyword,
@@ -116,6 +122,7 @@ def collect_data():
                         )
                         if hits_count == 0:
                             break
+                        page_no += 1
 
                 if saved_for_job == 0:
                     logger.warning(f"✗ No raw XML saved for {collection}: {keyword}")

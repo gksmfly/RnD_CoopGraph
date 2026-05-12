@@ -1,0 +1,44 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.Python
+
+# Virtual Environments
+.venv/
+venv/
+env/
+ENV/
+.env/
+
+# Pytest / Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# MyPy / Ruff
+.mypy_cache/
+.ruff_cache/
+
+# Django / FastAPI / Flask common
+*.sqlite3
+instance/
+.local/
+
+# ===== Build / Runtime =====
+dist/
+build/
+*.egg-info/
+
+# ===== Logs =====
+logs/
+
+# ===== IDE =====
+.idea/
+
+# ===== User =====
+temp/
+
+data/

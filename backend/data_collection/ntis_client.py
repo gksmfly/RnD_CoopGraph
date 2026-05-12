@@ -79,15 +79,18 @@ class NTISClient:
         )
 
         headers = {
-            "Accept": "application/xml,text/xml,text/plain,*/*",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Charset": "utf-8",
+            "Accept-Language": "ko-KR,ko;q=0.9,en-US;q=0.8",
+            "Accept-Encoding": "identity",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0",
         }
         response = requests.get(
             self.COLLECTIONS[collection],
             params=self.build_params(collection, keyword, page_no, page_size),
             headers=headers,
             timeout=20,
-            allow_redirects=False,
+            allow_redirects=True,
             verify=False,
         )
         response.raise_for_status()
@@ -205,9 +208,9 @@ class NTISClient:
         content_type = response.headers.get("Content-Type", "")
         text_head = response.text[:500].lower()
 
-        if response.is_redirect or "access_check" in location.lower():
+        if "access_check" in response.url.lower():
             raise NTISAPIError(
-                f"NTIS request was redirected to a blocked page: {location or response.url}"
+                f"NTIS request was redirected to a blocked page: {response.url}"
             )
 
         if "html" in content_type.lower() or "<html" in text_head or "blocked page" in text_head:

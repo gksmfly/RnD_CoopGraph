@@ -2,10 +2,14 @@
 # NTIS API 연결 테스트 스크립트
 # 기능: API 키 유효성, 응답 포맷 확인
 
+import warnings
 import requests
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+from urllib3.exceptions import InsecureRequestWarning
+
+warnings.filterwarnings("ignore", category=InsecureRequestWarning)
 
 # .env 로드
 env_path = Path(__file__).parent.parent.parent / ".env"
@@ -19,17 +23,20 @@ if not API_KEY:
 
 print(f"✓ API 키: {API_KEY[:10]}...")
 
-BASE_URL = "http://ntis.go.kr/openapi/openApiService"
+BASE_URL = "https://www.ntis.go.kr/rndopen/openApi/totalRstSearch"
 
 params = {
-    "apiKey": API_KEY,
-    "method": "getResearchProjectList",
-    "pageNo": 1,
-    "pageSize": 5,
-    "sYear": 2024,
-    "eYear": 2025,
-    "keyword": "AI",
-    "resultType": "xml"
+    "apprvKey": API_KEY,
+    "query": "AI",
+    "userId": "",
+    "collection": "project",
+    "searchField": "",
+    "startPosition": 1,
+    "displayCount": 5,
+    "naviCount": 10,
+    "sortby": "",
+    "boostquery": "",
+    "addQuery": "",
 }
 
 print("\n🔍 NTIS API 테스트...")
@@ -37,7 +44,7 @@ print(f"   URL: {BASE_URL}")
 print(f"   Keyword: AI, Year: 2024-2025\n")
 
 try:
-    response = requests.get(BASE_URL, params=params, timeout=10)
+    response = requests.get(BASE_URL, params=params, timeout=20, verify=False)
     print(f"Status Code: {response.status_code}")
     print(f"Content-Type: {response.headers.get('content-type', 'unknown')}")
 
