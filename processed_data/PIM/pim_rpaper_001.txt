@@ -1,0 +1,637 @@
+논문제목: Analysis of Data Transfer Bottlenecks in Commercial PIM Systems: A Study with UPMEM-PIM
+학술지: IEEE Computer Architecture Letters (CAL)
+발행연도: 2024
+수행기관: 한국과학기술원
+출처과제번호: 2710008432
+출처과제명: DRAM 기반 고성능 PIM 메모리 반도체 기술 개발
+DOI: https://doi.org/
+
+[초록]
+Dueto emergingworkloads that require high memorybandwidth, Processing-in-Memory (PIM) has gained significantattention and led several industrial PIM products to be introducedwhich are integrated with conventional computing systems. Thisletter characterizes the data transfer overheads between conventionalDRAM address space and PIM address space within aPIM-integrated system using the commercialized PIM devicemadeby UPMEM. Our findings highlight the need for optimizationin PIM-integrated systems to address these overheads, offeringcritical insights for future PIM technologies
+
+============================================================
+
+논문제목: PipePIM: Maximizing Computing Unit Utilization in ML-Oriented Digital PIM by Pipelining and Dual Buffering
+학술지: IEEE transactions on computer-aided design of integrated circuits and systems : a publication of the IEEE Circuits and Systems Society
+발행연도: 2024
+수행기관: 한국전자기술연구원
+출처과제번호: 2710006748
+출처과제명: 데이터 플로우 구조 기반 PIM의 실행 및 프로그래밍 모델 개발
+DOI: https://doi.org/10.1109/tcad.2024.3410842
+
+[초록]
+A digital processing-in-memory (PIM) that integrates computing units (CUs) with DRAM banks emerges as a promising technique for accelerating matrix-vector multiplication (MV). However, activating and precharging all banks incur significant overheads in a digital PIM based on conventional DRAM, which is limited to activating only a single subarray in a bank. Moreover, a digital PIM utilizes a vector buffer to store and reuse the input vector. This necessitates repeated buffer writes, incurring substantial overhead for large MV. Consequently, these overheads reduce CU utilization in a digital PIM, degrading the performance. To overcome these issues, we propose PipePIM, which maximizes CU utilization in a digital PIM by pipelining and dual buffering. PipePIM consists of two primary schemes: 1) subarray-level pipelining (SAPI) and 2) dual vector buffer. They exploit and extend the features of a multitude of activated subarrays (MASA) introduced by subarray-level parallelism (SALP). SAPI enables a digital PIM to perform activation, precharging, and computation on different subarrays in a pipelined manner. Through SAPI, these operations are overlapped, and activation and precharging overheads are hidden. A dual vector buffer employs two vector buffers and manages them as ping-pong buffering, one for computation and another for buffer write simultaneously. To facilitate it, PipePIM proposes a half-division mode (HDM) enabling independent access to two activated subarrays with marginal area increase. We demonstrate the improvements by PipePIM on the state-of-the-art digital PIMs, Newton and HBM-PIM. Our simulation results indicate that the average speedups of Newton and HBM-PIM on MV are $2.16\times $ and $1.74\times $ , respectively.
+
+============================================================
+
+논문제목: SP-PIM: A Super-Pipelined Processing-In-Memory Accelerator With Local Error Prediction for Area/Energy-Efficient On-Device Learning
+학술지: IEEE journal of solid-state circuits
+발행연도: 2024
+수행기관: 한국과학기술원
+출처과제번호: 2710008369
+출처과제명: 비대면·인공지능 사회를 위한 반도체 시스템 융합혁신기술 개발
+DOI: https://doi.org/10.1109/jssc.2024.3369326
+
+[초록]
+Over the past few years, on-device learning (ODL) has become an integral aspect of the success of edge devices that embrace machine learning (ML) since it plays a crucial role in restoring ML model accuracy when the edge environment changes. However, implementing ODL on battery-limited edge devices poses significant challenges due to the generation of large-size intermediate data during ML training and the frequent data movement between the processor and memory, resulting in substantial power consumption. To address this limitation, certain ML accelerators in edge devices have adopted a processing-in-memory (PIM) paradigm, integrating computing logic into memory. Nevertheless, these accelerators still face hurdles such as long latency caused by the lack of a pipelined approach in the training process, notable power and area overheads related to floating-point arithmetic, and incomplete handling of data sparsity during training. This article presents a high-throughput super-pipelined PIM accelerator, named SP-PIM, designed to overcome the limitations of existing PIM-based ODL accelerators. To this end, SP-PIM implements a holistic multi-level pipelining scheme based on local error prediction (EP), enhancing training speed by 7.31 $\times $ . In addition, SP-PIM introduces a local EP unit (LEPU), a lightweight circuit that performs accurate EP leveraging power-of-two (PoT) random weights. This strategy significantly reduces power-hungry external memory access (EMA) by 59.09%. Moreover, SP-PIM fully exploits sparsities in both activation and error data during training, facilitated by a highly optimized PIM macro design. Finally, the SP-PIM chip, fabricated using 28-nm CMOS technology, achieves a training speed of 8.81 epochs/s. It occupies a die area of 5.76 mm2 and consumes between 6.91 and 433.25 mW at operating frequencies of 20?450 MHz with a supply voltage of 0.56?1.05 V. We demonstrate that it can successfully execute end-to-end ODL for the CIFAR10 and CIFAR100 datasets. Consequently, it achieves state-of-the-art area efficiency (560.6 GFLOPS/mm2) and competitive power efficiency (22.4 TFLOPS/W), marking a 3.95 $\times $ higher figure-of-merit (area efficiency $\times $ power efficiency $\times $ capacity) than previous work. Furthermore, we implemented a cycle-level simulator using Python to investigate and validate the scalability of SP-PIM. By doing architectural experiments in various hardware configurations, we successfully verified that the core computing unit within SP-PIM possesses both scale-up and scale-out capabilities.
+
+============================================================
+
+논문제목: BL-PIM: Varying the Burst Length to Realize the All-Bank Performance and Minimize the Multi-Workload Interference for in-DRAM PIM
+학술지: IEEE ACCESS
+발행연도: 2023
+수행기관: 고려대학교
+출처과제번호: 1711193507
+출처과제명: 재구성형 PIM 디바이스 기반의 Memory-Centric 아키텍처 개발
+DOI: https://doi.org/10.1109/access.2023.3300893
+
+[초록]
+As the demand for transformer applications increases rapidly, technologies to solve memory bottlenecks are attracting attention. One of them is an in-DRAM Processing-In-Memory (PIM) architecture to perform the computation inside DRAM. Major DRAM makers introduce the PIM samples, E.X.E.Cuting all banks' computations simultaneously to maximize the internal DRAM bandwidth for achieving the highest performance. However, the realization as a commercial product is problematic since the all-bank E.X.E.Cution does not concurrently perform non-PIM applications during the PIM E.X.E.Cution with PIM memory, thus separating their memory space. This paper proposes a BL-PIM architecture to increase the burst length (BL) of memory requests inside a bank to maximize internal bandwidth and overlap the computation across banks, thus achieving all-bank performance. On the other hand, outside a bank, it seems not to increase the BL, thus allowing us to preserve the data consistency in memory hierarchy and E.X.E.Cute non-PIM and PIM applications together with PIM memory. Also, the memory-intensive PIM computation using larger BL significantly reduces their outstanding memory requests, thus minimizing the performance interference with other applications. We carefully extend the DRAM timing diagram and develop the cooperation mechanism between a memory controller and a PIM device. We implemented the BL-PIM architecture on FPGA and compared the performance with real machines using four transformer models and eight compute and memory-bound SPEC benchmarks. We achieved the BL-PIM performance up to 28.9x and 12.0x faster than the CPU single-thread and multi-threaded E.X.E.Cution in the transformer models. Also, when we increased the burst length by 16 times as the maximum, the BL-PIM was 1.2x faster than the ideal all-bank PIM E.X.E.Cution. We also experimented with the multi-workload E.X.E.Cution using the SPEC benchmarks, showing that our architecture can minimize performance interference. To our knowledge, the study of the PIM's multi-workload E.X.E.Cution is the first in public.
+
+============================================================
+
+논문제목: Z-PIM: A Sparsity-Aware Processing-in-Memory Architecture With Fully Variable Weight Bit-Precision for Energy-Efficient Deep Neural Networks
+학술지: IEEE JOURNAL OF SOLID-STATE CIRCUITS
+발행연도: 2021
+수행기관: 한국과학기술원
+출처과제번호: 1711125953
+출처과제명: 비대면·인공지능 사회를 위한 반도체 시스템 융합혁신기술 개발
+DOI: 10.1109/JSSC.2020.3039206
+
+[초록]
+We present an energy-efficient processing-in-memory (PIM) architecture named Z-PIM that supports both sparsity handling and fully variable bit-precision in weight data for energy-efficient deep neural networks. Z-PIM adopts the bit-serial arithmetic that performs a multiplication bit-by-bit through multiple cycles to reduce the complexity of the operation in a single cycle and to provide flexibility in bit-precision. To this end, it employs a zero-skipping convolution SRAM, which performs in-memory AND operations based on custom 8T-SRAM cells and channel-wise accumulations, and a diagonal accumulation SRAM that performs bit- and spatial-wise accumulation on the channel-wise accumulation results using diagonal logic and adders to produce the final convolution outputs. We propose the hierarchical bitline structure for energy-efficient weight bit pre-charging and computational readout by reducing the parasitic capacitances of the bitlines. Its charge reuse scheme reduces the switching rate by 95.42% for the convolution layers of VGG-16 model. In addition, Z-PIM`s channel-wise data mapping enables sparsity handling by skip-reading the input channels with zero weight. Its read-operation pipelining enabled by a read-sequence scheduling improves the throughput by 66.1%. The Z-PIM chip is fabricated in a 65-nm CMOS process on a 7.568-mm 2 die, while it consumes average 5.294-mW power at 1.0-V voltage and 200-MHz frequency. It achieves 0.31-49.12-TOPS/W energy efficiency for convolution operations as the weight sparsity and bit-precision vary from 0.1 to 0.9 and 1 to 16 bit, respectively. For the figure of merit considering input bit-width, weight bit-width, and energy efficiency, the Z-PIM shows more than 2.1 times improvement over the state-of-the-art PIM implementations.
+
+============================================================
+
+논문제목: DH-PIM: Maximizing Computing Unit Utilization in Digital PIM by Dual Half Mode Extension
+학술지: IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems
+발행연도: 2025
+수행기관: 연세대학교
+출처과제번호: 2710069207
+출처과제명: AI 프로세서의 데이터 특성과 데이터 접근 특성에 최적화한 비휘발성 PIM용 메모리 모듈 및 메모리 컴파일러 개발
+DOI: https://doi.org/10.1109/TCAD.2025.3571857
+
+[초록]
+Transformer-based Large Language Models (LLMs) rely on both General Matrix-Matrix Multiplication (GEMM) and General Matrix-Vector Multiplication (GEMV) for inference. While existing Processing-in-Memory (PIM) architectures, like HBM-PIM and Newton, efficiently handle GEMV operations, they suffer from low computing unit utilization during GEMM due to frequent input preparation and activation cycles. To address this, we propose Dual Half-mode PIM (DH-PIM), an extension of the Half Division Mode from previous PipePIM. DH-PIM splits sense amplifiers, and computing units into halves, allowing them to execute different operations independently. Dual half mode, which allows both halves of the computing unit to process data broadcast from either half of the sense amplifier, significantly enhances utilization via overlapped and pipelined execution. Our simulations show DH-PIM improves GEMM performance by up to 2.06x in GEMM kernels, with about 1.46x speedup in LLM tasks, compared to HBM-PIM. These performance improvements are achieved with minimal architectural modifications, resulting in low area and energy overhead.
+
+============================================================
+
+논문제목: Optimizing HBM-PIM Throughput through DRAM ACT and PRE Hiding
+학술지: 정보과학회논문지 = Journal of KIISE
+발행연도: 2025
+수행기관: 서강대학교산학협력단
+출처과제번호: 2710083228
+출처과제명: 서버급 DRAM 적층 기반 초거대 모델 향 PIM 가속 솔루션 개발
+DOI: https://doi.org/10.5626/jok.2025.52.7.557
+
+[초록]
+현대의 대규모 언어 모델(LLM)과 같은 응용프로그램은 높은 메모리 대역폭을 요구하며, 기존메모리 장치만으로 이를 충족시키기는 어렵다. 메모리 대역폭의 부족은 호스트 프로세서와 메모리 간의 데이터 전송 시간을 증가시켜 성능 병목 현상을 초래한다. 이를 해결하기 위해 Processing in memory (PIM)구조는 메모리 뱅크 근처에 연산 유닛을 배치하여 호스트의 작업을 분산시키고, DRAM 내부 대역폭을 활용한다. 본 논문에서는 DRAM 마이크로 아키텍처를 고려하여 실제로 개발된 PIM 장치 중 하나인 HBM-PIM의 동작을 심층 분석한다. 이를 바탕으로, HBM-PIM의 구조적 특성을 활용하여 하드웨어 변경 없이 수행할수 있는 최적화 기법을 제안한다. PIM 명령어 순서와 데이터 매핑 방식을 조정하고, 메모리 배리어 배치를 최적화함으로써, DRAM 행 버퍼 충돌로 인한 지연시간을 최소화하고 HBM-PIM의 성능을 개선한다.
+
+============================================================
+
+논문제목: Radar-PIM: Developing IoT processors utilizing processing-in-memory architecture for ultra-wideband radar-based respiration detection
+학술지: IEEE Internet of Things Journal
+발행연도: 2025
+수행기관: 연세대학교 산학협력단
+출처과제번호: 2710062326
+출처과제명: NVM 기반 PIM 반도체 컴퓨팅을 위한 논리합성 SW 개발
+DOI: https://doi.org/10.1109/JIOT.2024.3466228
+
+[초록]
+The adoption of ultrawideband (UWB) radar technology in IoT and healthcare applications for respiration detection is rapidly expanding, opening up a wide array of potential use cases. Despite its burgeoning utility, the integration of UWB radar-based respiration detection in IoT end node devices faces significant challenges due to the memory-intensive nature of these tasks, which strain the capabilities of IoT processors. This article introduces a streamlined UWB radar-based respiration detection application designed for operation on IoT processors, emphasizing that when executed on conventional IoT processors, the limited processing power still results in significant data loss, underscoring the need for enhanced processing solutions. To address these challenges, we propose the adoption of processing-in-memory (PIM) technology and unveil the novel Radar-PIM architecture. This architecture is meticulously engineered to boost the efficiency of respiration detection while ensuring seamless integration with existing embedded processor frameworks. This article extensively describes the Radar-PIM architecture and its operational mechanisms. We further demonstrate its superior performance by implementing and empirically testing a Radar-PIM processor prototype. Next, we present an optimization strategy tailored for designing energy-efficient Radar-PIM processors, specifically adapted for diverse UWB radar-based respiration detection applications. For instance, a Radar-PIM processor prototype, optimized for a particular application, achieved approximately 42% energy savings compared to its unoptimized counterpart and delivered performance nearly three times greater than that of a multicore processor with equivalent power consumption. This demonstrates the transformative potential of our proposed solution in enhancing the capabilities of radar-based respiration detection systems for IoT end nodes.
+
+============================================================
+
+논문제목: Accelerating Retrieval Augmented Language Model via PIM and PNM Integration
+학술지: Proceedings of the 58th IEEE/ACM International Symposium on Microarchitecture
+발행연도: 2025
+수행기관: 연세대학교 산학협력단
+출처과제번호: 2710062326
+출처과제명: NVM 기반 PIM 반도체 컴퓨팅을 위한 논리합성 SW 개발
+DOI: https://doi.org/10.1145/3725843.3756020
+
+[초록]
+Retrieval-Augmented Language Models (RALMs) integrate a language model with an external database to generate high-quality outputs utilizing up-to-date information. However, both components of a RALM system, the language model and the retriever, suffer from distinct memory-bound bottlenecks. In particular, the attention mechanism of the language model heavily relies on General Matrix-Vector Multiplication (GEMV) operations using unique K/V matrices per request, complicating batch parallelization and exacerbating memory bandwidth constraints. Conversely, the retriever encounters performance bottlenecks due to frequent LUT lookups and intensive sorting operations, characterized by low arithmetic intensity and limited data reuse, making GPU acceleration challenging. To address these distinctive characteristics, this paper proposes MNM, a hardware architecture integrating Processing In Memory (PIM) within the HBM core die and Processing Near Memory (PNM) on the HBM logic die. The PIM module leverages the high internal bandwidth of HBM to accelerate GEMV operations in the language model, while the PNM module optimizes retrieval-specific tasks. Furthermore, this work introduces a novel RALM scheduling strategy combining selective batching and early generation to exploit the performance improvements achieved by the MNM architecture. By strategically overlapping retrieval and generation phases, the proposed scheduling scheme reduces idle cycles in a batched RALM system. Experimental results demonstrate that the proposed techniques achieve up to 29.2 × performance speedup compared to a conventional GPU-based RALM system. In addition, the proposed PIM/PNM-integrated approach saves up to 71.5% of energy consumption, highlighting its applicability for memory-bound RALM workloads.
+
+============================================================
+
+논문제목: Big-Computing and Little-Storing STT-MRAM PIM Architecture With Charge Domain Based MAC Operation
+학술지: IEEE transactions on computers
+발행연도: 2025
+수행기관: 서울대학교산학협력단
+출처과제번호: 2710081682
+출처과제명: 초저전력 Low-Bit Precision 혼성모드 SRAM PIM 개발
+DOI: https://doi.org/10.1109/tc.2024.3517754
+
+[초록]
+Spin transfer torque magnetic random access memory (STT-MRAM) is a promising memory technology for processing in memory (PIM) thanks to its high endurance and relatively low device-to-device and cycle-to-cycle variations. However, the low OFF/ON ratio of STT device limits the number of active row-lines during multiply-accumulate (MAC) operations, degrading energy efficiency and computation speed. In this paper, we present an energy efficient and high speed Big-computing and Little-storing STT-MRAM PIM (BCLS-SP) architecture, which can increase the number of active row-lines with almost no area overhead. In the BCLS-SP architecture, a charge domain-based STT-MRAM PIM (CD-SP) structure is employed to concurrently activate many row-lines by improving MAC operation reliability. Filter-wise weight compression (FWC) and weight sharing (WS) are also devised to compress the weights stored in CD-SP, thus reducing area cost. In addition, the proposed architecture performs MAC operations with skipping zero-valued input (SZI) and zero-conversion scheme (ZCS) for better energy efficiency and performance. The simulations using 28nm CMOS process show that the BCLS-SP architecture shows energy reduction of 29% and performance improvement of 3.6 compared to the recent memristive device-based PIM using weight compression and input skipping.
+
+============================================================
+
+논문제목: SAL-PIM: A Subarray-Level Processing-in-Memory Architecture With LUT-Based Linear Interpolation for Transformer-Based Text Generation
+학술지: IEEE transactions on computers
+발행연도: 2025
+수행기관: 한국과학기술원
+출처과제번호: 2710075328
+출처과제명: DRAM 기반 고성능 PIM 메모리 반도체 기술 개발
+DOI: https://doi.org/10.1109/tc.2025.3576935
+
+[초록]
+Text generation is a compelling sub-field of natural language processing, aiming to generate human-readable text from input words. Although many deep learning models have been proposed, the recent emergence of transformer-based large language models advances its academic research and industry development, showing remarkable qualitative results in text generation. In particular, the decoder-only generative models, such as generative pre-trained transformer (GPT), are widely used for text generation, with two major computational stages: summarization and generation. Unlike the summarization stage, which can process the input tokens in parallel, the generation stage is difficult to accelerate due to its sequential generation of output tokens through iteration. Moreover, each iteration requires reading a whole model with little data reuse opportunity. Therefore, the workload of transformer-based text generation is severely memory-bound, making the external memory bandwidth system bottleneck. In this paper, we propose a subarray-level processing-in-memory (PIM) architecture named SAL-PIM, the first HBM-based PIM architecture for the end-to-end acceleration of transformer-based text generation. With optimized data mapping schemes for different operations, SAL-PIM utilizes higher internal bandwidth by integrating multiple subarray-level arithmetic logic units (S-ALUs) next to memory subarrays. To minimize the area overhead for S-ALU, it uses shared MACs leveraging slow clock frequency of commands for the same bank. In addition, a few subarrays in the bank are used as look-up tables (LUTs) to handle non-linear functions in PIM, supporting multiple addressing to select sections for linear interpolation. Lastly, the channel-level arithmetic logic unit (C-ALU) is added in the buffer die of HBM to perform the accumulation and reduce-sum operations of data across multiple banks, completing end-to-end inference on PIM. To validate the SAL-PIM architecture, we built a cycle-accurate simulator based on Ramulator. We also implemented the SAL-PIM's logic units in 28-nm CMOS technology and scaled the results to DRAM technology to verify its feasibility. We measured the end-to-end latency of SAL-PIM when it runs various text generation workloads on the GPT-2 medium model (with 345 million parameters), in which the input and output token numbers vary from 32 to 128 and from 1 to 256, respectively. As a result, with 4.81% area overhead, SAL-PIM achieves up to 4.72× speedup (1.83× on average) over the Nvidia Titan RTX GPU running Faster Transformer Framework.
+
+============================================================
+
+논문제목: Implementation of Boolean Logic Operations and Refresh Circuit for 2T DRAM-Based PIM Architecture
+학술지: electronics
+발행연도: 2025
+수행기관: 서울과학기술대학교
+출처과제번호: 2710086308
+출처과제명: 논리 연산 최적화를 위한 flash 기반 피드백 트랜지스터 구조의 PIM 어레이 및 연산 회로 집적 개발
+DOI: https://doi.org/10.3390/electronics14224483
+
+[초록]
+The performance bottleneck arising from the speed disparity between the CPU and DRAM highlights the inherent limitations of the von Neumann architecture. To address this issue, we propose a PIM architecture based on a 2T DRAM structure. The proposed PIM design performs Boolean operations directly within the 2T DRAM array, thereby minimizing data movement between the CPU and DRAM and effectively alleviating the bottleneck. The 2T DRAM array was implemented using the mixed-mode simulation capability of SILVACO TCAD, and its read, write, and hold operations were successfully verified. Building on this foundation, OR and AND logic operations were realized by modulating the gate voltages of MOSFETs within the 2T DRAM array. To enable XNOR functionality, an auxiliary circuit consisting of three additional MOSFETs was integrated. Furthermore, as the ultimate goal of PIM is to enable memory to perform computational tasks, support for MAC operations becomes essential. To facilitate this, we designed a refresh circuit capable of maintaining multi-state data, which is critical for MAC operations. This circuit, also composed of three MOSFETs, functions as a key component for multi-state data retention within the 2T DRAM array. In summary, we demonstrate the implementation of Boolean logic operations using the 2T DRAM array and a three-MOSFET auxiliary circuit and propose a compact refresh circuit to support MAC operations, advancing the potential of PIM architectures.
+
+============================================================
+
+논문제목: PIM-MMU: A Memory Management Unit for Accelerating Data Transfers in Commercial PIM Systems
+학술지: Proceedings - 2024 57th IEEE/ACM International Symposium on Microarchitecture (MICRO)
+발행연도: 2024
+수행기관: 한국전자기술연구원
+출처과제번호: 2710006713
+출처과제명: 시뮬레이션 기반 고속/고정확도 데이터센터 워크로드/시스템 분석 플랫폼 개발
+DOI: https://doi.org/10.1109/MICRO61859.2024.00053
+
+[초록]
+Processing-in-memory (PIM) has emerged as a promising solution for accelerating memory-intensive workloads as they provide high memory bandwidth to the processing units. This approach has drawn attention not only from the academic community but also from the industry, leading to the development of real-world commercial PIM devices. In this work, we first conduct an in-depth characterization on UPMEM's general-purpose PIM system and analyze the bottlenecks caused by the data transfers across the DRAM and PIM address space. Our characterization study reveals several critical challenges associated with DRAM↔PIM data transfers in memory bus integrated PIM systems, for instance, its high CPU core utilization, high power consumption, and low read/write throughput for both DRAM and PIM. Driven by our key findings, we introduce the PIM-MMU architecture which is a hardware/software co-design that enables energy-efficient DRAM↔PIM transfers for PIM systems. PIM-MMU synergistically combines a hardware-based data copy engine, a PIM-optimized memory scheduler, and a heterogeneity-aware memory mapping function, the utilization of which is supported by our PIM-MMU software stack, significantly improving the efficiency of DRAM↔PIM data transfers. Experimental results show that PIM-MMU improves the DRAM↔PIM data transfer throughput by an average 4.1× and enhances its energy-efficiency by 4.1× , leading to a 2.2× end-to-end speedup for real-world PIM workloads.
+
+============================================================
+
+논문제목: Hardware-Software Co-Designfor Vector Similarity Search on HBM-PIM
+학술지: JOURNAL OF SEMICONDUCTOR TECHNOLOGY AND SCIENCE
+발행연도: 2025
+수행기관: 고려대학교산학협력단
+출처과제번호: 2710077783
+출처과제명: 재구성형 PIM 디바이스 기반의 Memory-Centric 아키텍처 개발
+DOI: https://doi.org/
+
+[초록]
+Vector similarity search is a key component of Retrieval-Augmented Generation (RAG) for large lan-guage models (LLMs), requiring memory-intensive computations such as Manhattan distance, Euclidean distance,and cosine similarity. Processing-In-Memory (PIM) architectures offer a promising solution to accelerate thesememory-bound operations by reducing data movement between memory and processor. This study presents ahardware-software co-design approach for optimizing distance computation on PIM. We first implemented andevaluated a vector similarity search application on a DRAM-based PIM platform using the developed computationlibrary, achieving 44.2% and 59.0% speed improvements for Euclidean distance and cosine similarity, respectively,compared to the CPU. However, instruction set limitations led to performance bottlenecks despite software-level op-timization. To address this, we utilized an HBM-based PIM simulator and proposed two new instructions, AMC andMAN, optimized for Euclidean and Manhattan distance computations. Evaluation using a simulator integrated withDRAMSim2 showed that the proposed instructions reduced the total cycle count for distance computations by up to44% compared to the baseline, with performance gains increasing for larger input sizes. These results demonstratethat both software-level and instruction-level optimizations are essential to fully exploit the performance potentialof PIM architectures for distance computation workloads.
+
+============================================================
+
+논문제목: Cache-PIM: An ECC-Compatible eDRAM Processing-in-Memory for Last-Level Cache With Triple-Level Error Correction
+학술지: IEEE Journal of Solid-State Circuits
+발행연도: 2025
+수행기관: 한국과학기술원
+출처과제번호: 2710085360
+출처과제명: 페타플롭스급 연산과 GB급 DRAM메모리 융합 PIM 플랫폼 및 PIM 모빌리티 반도체 개발
+DOI: https://doi.org/10.1109/JSSC.2025.3568485
+
+[초록]
+This article presents cache-processing-in-memory (PIM), an error correction code (ECC)-compatible embedded dynamic random access memory (eDRAM) PIM-based last-level cache (LLC) with a novel triple-level error correction. Integrating PIM into the cache system causes the existing ECC to become a performance bottleneck, leading to higher latency and decreased computational accuracy. An ECC-compatible eDRAM-PIM enables reliable in-memory computing (IMC) even in less stable DRAM environments while reducing ECC latency for PIM tasks. Cache-PIM proposes three key features: 1) triggered error correction with concurrent error detection (TECCED) reduces cell error correction latency for PIM tasks; 2) adaptive error canceling (AEC) corrects computation errors; and 3) resolution-aware single-cycle voting (RSV) reduces analog-to-digital converter (ADC) readout error. Cache-PIM is fabricated in 28-nm CMOS technology and occupies 0.66-mm2 die area. A demonstration of ViT-Base on the ImageNet dataset achieves 61% latency reduction compared to the conventional ECC and 77.1% accuracy.
+
+============================================================
+
+논문제목: SP-PIM: A Super-Pipelined Processing-In-Memory Accelerator With Local Error Prediction for Area/Energy-Efficient On-Device Learning
+학술지: IEEE Journal of Solid-State Circuits (JSSC)
+발행연도: 2024
+수행기관: 한국과학기술원
+출처과제번호: 2710008432
+출처과제명: DRAM 기반 고성능 PIM 메모리 반도체 기술 개발
+DOI: https://doi.org/10.1109/JSSC.2024.3369326
+
+[초록]
+Over the past few years, on-device learning (ODL)has become an integral aspect of the success of edge devicesthat embrace machine learning (ML) since it plays a crucial rolein restoring ML model accuracy when the edge environmentchanges. However, implementing ODL on battery-limited edgedevices poses significant challenges due to the generation oflarge-size intermediate data during ML training and the frequentdata movement between the processor and memory, resulting insubstantial power consumption. To address this limitation, certainML accelerators in edge devices have adopted a processingin-memory (PIM) paradigm, integrating computing logic intomemory. Nevertheless, these accelerators still face hurdles suchas long latency caused by the lack of a pipelined approach inthe training process, notable power and area overheads relatedto floating-point arithmetic, and incomplete handling of datasparsity during training. This article presents a high-throughputsuper-pipelined PIM accelerator, named SP-PIM, designed toovercome the limitations of existing PIM-based ODL accelerators.To this end, SP-PIM implements a holistic multi-level pipeliningscheme based on local error prediction (EP), enhancing trainingspeed by 7.31×. In addition, SP-PIM introduces a local EPunit (LEPU), a lightweight circuit that performs accurate EPleveraging power-of-two (PoT) random weights. This strategy significantlyreduces power-hungry external memory access (EMA)by 59.09%. Moreover, SP-PIM fully exploits sparsities in bothactivation and error data during training, facilitated by ahighly optimized PIM macro design. Finally, the SP-PIM chip,fabricated using 28-nm CMOS technology, achieves a trainingspeed of 8.81 epochs/s. It occupies a die area of 5.76 mm2 andconsumes between 6.91 and 433.25 mW at operating frequenciesof 20?450 MHz with a supply voltage of 0.56?1.05 V. We demonstratethat it can successfully execute end-to-end ODL for theCIFAR10 and CIFAR100 datasets. Consequently, it achievesstate-of-the-art area efficiency (560.6 GFLOPS/mm2) and competitivepower efficiency (22.4 TFLOPS/W), marking a 3.95× higherfigure-of-merit (area efficiency × power efficiency × capacity)
+
+============================================================
+
+논문제목: Architecting Compatible PIM Protocol for CPU-PIM Collaboration
+학술지: IEEE computer architecture letters
+발행연도: 2024
+수행기관: 인하대학교
+출처과제번호: 1711180712
+출처과제명: 프로세싱-인-메모리의 표준화 가능 인터페이스 연구
+DOI: https://doi.org/10.1109/lca.2024.3432936
+
+[초록]
+Processing in Memory (PIM) technology is gaining traction with the introduction of several prototype products. However, the interfaces of existing PIM devices hinder CPU performance excessively by delaying normal memory requests for long periods during PIM operations. In this paper, we propose a new PIM command and protocol designed for compatibility across various PIM devices and host processors, focusing on DRAM standards with limited command space. Our proposed command, PIM-ACT, activates multiple banks simultaneously with assigning the specific PIM operation. It closely follows the functionality of the ACT command for straightforward control by the memory controller. We also explore memory scheduling policies that balance the latency of conventional memory requests with the throughput of PIM workloads. Our evaluation demonstrates the effectiveness of our approach in optimizing both PIM and conventional workload performance.
+
+============================================================
+
+논문제목: Area-Efficient/Low-Power MRAM-PIM Based on Crossbar Array Utilizing Ternary Output
+학술지: IEEE transactions on magnetics
+발행연도: 2025
+수행기관: 고려대학교산학협력단
+출처과제번호: 2710033855
+출처과제명: e-MRAM에 기반한 고신뢰성 저전력 인증 하드웨어 개발
+DOI: https://doi.org/10.1109/tmag.2025.3627217
+
+[초록]
+In this article, we propose an magnetic random access memory (MRAM)-based analog process-in-memory (MPIM) architecture with ternary output. The proposed architecture can: 1) increase array efficiency by binarizing the input to 0 or 1 instead of ?1 or 1; 2) avoid accuracy degradation by using current compensation circuit; and 3) reduce energy overhead via 3-bit downscaling. Simulation results using a two-layer perceptron demonstrate that the proposed MPIM achieves 90.3% inference accuracy on the MNIST dataset and a peak energy efficiency of 819.8 TOPS/W at 200 MHz.
+
+============================================================
+
+논문제목: Unleashing the Potential of PIM: Accelerating Large Batched Inference of Transformer-Based Generative Models
+학술지: IEEE COMPUTER ARCHITECTURE LETTERS
+발행연도: 2023
+수행기관: 서울대학교
+출처과제번호: 1711193550
+출처과제명: 고신뢰 메모리를 위한 지능형 인메모리 오류정정 디바이스 개발
+DOI: https://doi.org/10.1109/lca.2023.3305386
+
+============================================================
+
+논문제목: ADC-PIM: Accelerating Convolution on the GPU via In-Memory Approximate Data Comparison
+학술지: IEEE JOURNAL ON EMERGING AND SELECTED TOPICS IN CIRCUITS AND SYSTEMS
+발행연도: 2022
+수행기관: 인하대학교 산학협력단
+출처과제번호: 1711152938
+출처과제명: 스마트 모빌리티를 위한 인공지능 시스템반도체 핵심 기술 개발 및 인력 양성
+DOI: 10.1109/JETCAS.2022.3167391
+
+[초록]
+convolutional neural networks (CNN) have been widely used in image processing and computer vision.
+
+============================================================
+
+논문제목: Using a PIM interface for improving computer medical image processing abilities
+학술지: TECHNOLOGY AND HEALTH CARE
+발행연도: 2020
+수행기관: 전자부품연구원
+출처과제번호: 1711116162
+출처과제명: Processing in Memory 반도체 아키텍처 및 데이터 집약적 응용처리를 위한 병렬처리 기술 개발
+DOI: 10.3233/THC-209049
+
+============================================================
+
+논문제목: Dynamic Performance and Power Optimization with Heterogeneous Processing-in-Memory for AI Applications on Edge Devices
+학술지: Micromachines
+발행연도: 2024
+수행기관: 중앙대학
+출처과제번호: 2710004872
+출처과제명: 우주항공 특화 초저전력 내고장성 RISC-V 프로세서 핵심설계기술 개발
+DOI: https://doi.org/10.3390/mi15101222
+
+[초록]
+The rapid advancement of artificial intelligence (AI) technology, combined with the widespread proliferation of Internet of Things (IoT) devices, has significantly expanded the scope of AI applications, from data centers to edge devices. Running AI applications on edge devices requires a careful balance between data processing performance and energy efficiency. This challenge becomes even more critical when the computational load of applications dynamically changes over time, making it difficult to maintain optimal performance and energy efficiency simultaneously. To address these challenges, we propose a novel processing-in-memory (PIM) technology that dynamically optimizes performance and power consumption in response to real-time workload variations in AI applications. Our proposed solution consists of a new PIM architecture and an operational algorithm designed to maximize its effectiveness. The PIM architecture follows a well-established structure known for effectively handling data-centric tasks in AI applications. However, unlike conventional designs, it features a heterogeneous configuration of high-performance PIM (HP-PIM) modules and low-power PIM (LP-PIM) modules. This enables the system to dynamically adjust data processing based on varying computational load, optimizing energy efficiency according to the applications workload demands. In addition, we present a data placement optimization algorithm to fully leverage the potential of the heterogeneous PIM architecture. This algorithm predicts changes in application workloads and optimally allocates data to the HP-PIM and LP-PIM modules, improving energy efficiency. To validate and evaluate the proposed technology, we implemented the PIM architecture and developed an embedded processor that integrates this architecture. We performed FPGA prototyping of the processor, and functional verification was successfully completed. Experimental results from running applications with varying workload demands on the prototype PIM processor demonstrate that the proposed technology achieves up to 29.54% energy savings.
+
+============================================================
+
+논문제목: 내장형 시스템을 위한 사용자 인터페이스 모델 기반 모바일 웹앱 자동 생성 도구
+학술지: 정보과학회 컴퓨팅의 실제 논문지
+발행연도: 2017
+수행기관: 한국외국어대학교(용인캠퍼스)
+출처과제번호: 1711024061
+출처과제명: UI(User Interface) 중심적 임베디드 시스템의 계층적 UI 모델링과 구현 매핑
+
+[초록]
+본 논문에서는 사용자 인터페이스(UI) 모델로부터 모바일 웹앱을 자동으로 생성하는 도구를 제시한다. UI 모델은 UI 중심적인 내장형 시스템을 UI 모델링을 통해 효율적으로 개발하기 위한 방법인 PELUM(Pattern and Event based Logical UI Modeling)을 기반으로 한다. 본 논문에서 제시하는 도구는 모델 편집기와 코드 생성기로 이루어져 있다. 모델 편집기는 웹 상에서 논리적 UI 모델(LUM)과 프로그래밍 인터페이스 모델(PIM)을 모델링하는 환경을 제공한다. 코드 생성기는 LUM을 기반으로 앱의 화면구성 및 이벤트 동작을 설정하고 PIM을 기반으로 로컬 데이터베이스 스키마를 자동으로 구성하여 모바일 웹앱을 생성한다. 또한 PIM에서 외부 혹은 open API 주소를 입력 받아 매쉬업 웹앱을 생성하는 기능도 제공한다. 생성된 모바일 웹앱은 사용자가 손쉽게 최적화할 수 있도록 Model-View-Controller(MVC) 아키텍처로 구현하였다. 이를 통해 사용자는 웹 상에서 UI를 모델링하여 여러 기기에서 동작 가능한 모바일 웹앱을 생성할 수 있다.
+
+============================================================
+
+논문제목: VWC-SDK: Convolutional Weight Mapping Using Shifted and Duplicated Kernel With Variable Windows and Channels
+학술지: IEEE JOURNAL ON EMERGING AND SELECTED TOPICS IN CIRCUITS AND SYSTEMS
+발행연도: 2022
+수행기관: 인하대학교 산학협력단
+출처과제번호: 1711152938
+출처과제명: 스마트 모빌리티를 위한 인공지능 시스템반도체 핵심 기술 개발 및 인력 양성
+DOI: 10.1109/JETCAS.2022.3173649
+
+[초록]
+효율적인 PIM기반의 CNN 추론을 위해 VW-SDK와 channel pruning을 이용하여 최적의 parameters의 수를 찾아 추론 속도를 향상시키는 방법 제안
+
+============================================================
+
+논문제목: Recent Trends in Leveraging Processing-in-Memory for Accelerating Relational Database Management Systems
+학술지: 정보처리학회 논문지
+발행연도: 2024
+수행기관: (주)망고부스트
+출처과제번호: 2710007386
+출처과제명: 차세대 AI 반도체를 위한 DPU 중심의 데이터센터 아키텍처
+DOI: https://doi.org/10.3745/TKIPS.2024.13.11.579
+
+[초록]
+In this paper, we present a comprehensive survey on recent research exploiting Processing-In-Memory (PIM) to enhance the performanceof Relational Database Management Systems (RDBMSs). PIM integrates In-Memory Processors (IMPs) near memory banks, allowingmemory-intensive operations to leverage the high internal memory bandwidth and computational capabilities of IMPs. Given that manykey operations of RDBMSs are memory-heavy and require a large number of frequent memory accesses, PIM has emerged as a promisingsolution for accelerating RDBMSs. We provide an overview of the key architectural characteristics of commodity PIM-enabled memorydevices, examine how recent studies have applied PIM to accelerate RDBMSs, and explore potential research directions in PIM-acceleratedRDBMSs.
+
+============================================================
+
+논문제목: Darwin: A DRAM-based Multi-level Processing-in-Memory Architecture for Column-Oriented Database
+학술지: IEEE TRANSACTIONS ON EMERGING TOPICS IN COMPUTING (TETC)
+발행연도: 2024
+수행기관: 한국과학기술원
+출처과제번호: 2710008432
+출처과제명: DRAM 기반 고성능 PIM 메모리 반도체 기술 개발
+DOI: https://doi.org/10.1109/TETC.2024.3493132
+
+[초록]
+We propose Darwin, a practical LRDIMM-basedmulti-level Processing-in-memory (PIM) architecture for dataanalytics, which exploits the internal bandwidth of DRAM usingthe bank-, bank group-, chip-, and rank-level parallelisms. Consideringthe properties of data analytics operators and DRAM'sarea constraints, Darwin maximizes the internal bandwidth byplacing the PIM processing units, buffers, and control circuitsacross the hierarchy of DRAM. Darwin supports a novel PIM instructionarchitecture that concatenates instructions for multiplethread executions on bank group processing entities, addressingthe command bottleneck by enabling separate control of upto 512 different in-memory processing units simultaneously. Webuild a cycle-accurate simulation framework to evaluate Darwinwith various DRAM configurations, optimization schemes andworkloads. Darwin achieves up to 14.7 speedup over thenon-optimized version, leveraging many optimization schemes.Darwin architecture achieves 4.0-43.9 higher throughput andreduces energy consumption by 85.7% than the baseline CPUsystem (Intel Xeon Gold 6226 + 4 channels of DDR4-2933) foressential data analytics operators. Compared to the state-of-theartPIM, Darwin achieves up to 7.5 and 7.1 in the basic queryoperators and TPC-H queries, respectively. Darwin in GDDR6configuration requires only 5.6% area overhead, suggesting apromising PIM solution for the future main memory system.
+
+============================================================
+
+논문제목: PIMCoSim: Hardware/Software Co-Simulator for Exploring Processing-in-Memory Architectures
+학술지: Electronics
+발행연도: 2024
+수행기관: 서울과학기술대학
+출처과제번호: 2710006659
+출처과제명: AI 반도체 프로세싱 소프트웨어 핵심기술 개발
+DOI: https://doi.org/10.3390/electronics13234795
+
+[초록]
+As the scope of artificial intelligence (AI) expands and the structure becomes more complex, the amount of data for inference and training has increased. In traditional computer architectures, the memorybandwidthlimitationshaveintensified bottlenecks in AI systems, and processing-in-memory (PIM) architectures have been proposed to overcome this issue. PIM is an architecture that performs computations within memory, thereby reducing data movement between the CPU and memory. However, since PIM is difficult to optimize as a general-purpose architecture, it is essential to adopt an architecture suitable for the target application. While various simulators and emulators have been introduced for the design space exploration (DSE) of different PIM architectures, simulators are limited in debugging hardware operations, and emulators face challenges in flexibly modifying the system configuration, as emulators implement the entire architecture in hardware. Therefore, this paper introduces PIMCoSim, a comprehensive hardware?software co-simulator for the DSE of DRAM-PIM systems. This co-simulator partially emulates simplified hardware-implemented processing elements (PEs) and integrates software models for memory operations, facilitating the DSE of PIM systems. To validate PIMCoSim, we analyzed results for different computational workloads by varying PIM structures and operational policies, demonstrating the efficiency of DRAM-PIM systems. The co-simulation approach in PIMCoSim aims to contribute to analyzing DRAM-PIM configurations and adopting optimized structures
+
+============================================================
+
+논문제목: A Genetic Algorithm Accelerator Based on Memristive Crossbar Array for Massively Parallel Computation
+학술지: IEEE Access
+발행연도: 2024
+수행기관: 한양대학
+출처과제번호: 2710008254
+출처과제명: PIM용 신소자-CMOS 통합 PDK 개발 및 공동 집적 공정 플랫폼을 활용한 MPW칩 제작검증
+DOI: https://doi.org/10.1109/ACCESS.2024.3452762
+
+[초록]
+Genetic algorithm (GA) has been extensively used for solving complex problems. Due to a high computational burden of finding solutions using GA, acceleration with hardware support has been a choice. In this paper, a GA accelerator based on the processing-in-memory (PIM) methodology to address the computational issue of GA is proposed. The proposed GA accelerator has a memristive crossbar array that can support parallelism with memory and computation combined. For letting the crossover operation for GA exploit massive parallelism provided by the array, a novel crossover scheme called aligned hybrid crossover is proposed, in which multiple multi-point crossovers coexist whose crossover bit positions are aligned. By using the memristive array, the mutation operation can also be done simultaneously for all required chromosome bits. Moreover, the fitness for weighted-sum computation-based 0-1 knapsack and subset-sum problems is shown to be evaluated in full parallel for the entire chromosomes in a population. The effects of memristance variation in the array on the fitness evaluation and the read margin are investigated. According to performance evaluation, the proposed GA accelerator having a 64×64 memristive crossbar array is found to reduce the clock cycles significantly for performing operations like crossover, mutation, selection, and fitness evaluation. Specifically, for executing the generational GA with a chromosome population size of 64 with each chromosome having 64 bits, the total number of clock cycles required per generation is at least 10 times reduced as compared to conventional designs.
+
+============================================================
+
+논문제목: PIMCoSim: Hardware/Software Co-Simulator for Exploring Processing-in-Memory Architectures
+학술지: Electronics
+발행연도: 2024
+수행기관: 서울대학
+출처과제번호: 2710008428
+출처과제명: 엣지용 연산기능강화 DRAM PIM 반도체 기술 개발
+DOI: https://doi.org/10.3390/electronics13234795
+
+[초록]
+As the scope of artificial intelligence (AI) expands and the structure becomes more complex, the amount of data for inference and training has increased. In traditional computer architectures, the memory bandwidth limitations have intensified bottlenecks in AI systems, and processing-in-memory (PIM) architectures have been proposed to overcome this issue. PIM is an architecture that performs computations within memory, thereby reducing data movement between the CPU and memory. However, since PIM is difficult to optimize as a general-purpose architecture, it is essential to adopt an architecture suitable for the target application. While various simulators and emulators have been introduced for the design space exploration (DSE) of different PIM architectures, simulators are limited in debugging hardware operations, and emulators face challenges in flexibly modifying the system configuration, as emulators implement the entire architecture in hardware. Therefore, this paper introduces PIMCoSim, a comprehensive hardware-software co-simulator for the DSE of DRAM-PIM systems. This co-simulator partially emulates simplified hardware-implemented processing elements (PEs) and integrates software models for memory operations, facilitating the DSE of PIM systems. To validate PIMCoSim, we analyzed results for different computational workloads by varying PIM structures and operational policies, demonstrating the efficiency of DRAM-PIM systems. The co-simulation approach in PIMCoSim aims to contribute to analyzing DRAM-PIM configurations and adopting optimized structures.
+
+============================================================
+
+논문제목: Efficient Processing-in-Memory System Based on RISC-V Instruction Set Architecture
+학술지: Electronics
+발행연도: 2024
+수행기관: 한국과학기술원
+출처과제번호: 2710008706
+출처과제명: PIM 반도체 설계연구센터
+DOI: https://doi.org/10.3390/electronics13152971
+
+[초록]
+A lot of research on deep learning and big data has led to efficient methods for processing large volumes of data and research on conserving computing resources. Particularly in domains like the IoT (Internet of Things), where the computing power is constrained, efficiently processing large volumes of data to conserve resources is crucial. The processing-in-memory (PIM) architecture was introduced as a method for efficient large-scale data processing. However, PIM focuses on changes within the memory itself rather than addressing the needs of low-cost solutions such as the IoT. This paper proposes a new approach using the PIM architecture to overcome memory bottlenecks effectively in domains with computing performance constraints. We adopt the RISC-V instruction set architecture for our proposed PIM systems design, implementation, and comprehensive performance evaluation. Our proposal expects to efficiently utilize low-spec systems like the IoT by minimizing core modifications and introducing PIM instructions at the ISA level to enable solutions that leverage PIM capabilities. We evaluate the performance of our proposed architecture by comparing it with existing structures using convolution operations, the fundamental unit of deep-learning and big data computations. The experimental results show our proposed structure achieves a 34.4% improvement in processing speed and 18% improvement in power consumption compared to conventional von Neumann-based architectures. This substantiates its effectiveness at the application level, extending to fields such as deep learning and big data.
+
+============================================================
+
+논문제목: GAROS: Genetic algorithm-aided row-skipping for shift and duplicate kernel mapping in processing-in-memory architectures
+학술지: Journal of systems architecture : JSA : the Euromicro journal
+발행연도: 2025
+수행기관: 인하대학교 산학협력단
+출처과제번호: 2710077587
+출처과제명: 스마트 모빌리티를 위한 인공지능 시스템반도체 핵심 기술 개발 및 인력 양성
+DOI: https://doi.org/10.1016/j.sysarc.2025.103423
+
+[초록]
+Processing-in-memory (PIM) architecture is becoming a promising candidate for convolutional neural network (CNN) inference. A recent mapping method, shift and duplicate kernel (SDK), enhances latency by improving array utilization through shifting the same kernels into idle columns. Although pattern-based pruning effectively enables row-skipping, traditional pattern designs are suboptimal for SDK mapping due to the irregular kernel shifts, complicating row-skipping. To address this, we proposed pruning-aided row-skipping (PAIRS), which adopts SDK-optimized layer-wise patterns. However, PAIRS has two key limitations: it offers discrete row-skipping by using single pattern set, restricting precise control over the weight matrix compression for varying layer and array sizes, and it risks accuracy loss by pruning critical weights. To overcome these challenges, we introduce genetic algorithm-aided row-skipping (GAROS), which employs input channel (IC)wise patterns. GAROS enables finer control over row-skipping by assigning several pattern sets and selecting optimal patterns to each IC for preserving critical weights. Consequently, this approach enables continuous weight matrix compression while balancing the trade-off between row-skipping and accuracy. Simulation results in WRN16-4 demonstrate that GAROS improved accuracy by up to +2.4% compared to PAIRS and achieved up to a 1.74× speedup compared to baseline when 128 × 128 sub-array is used.
+
+============================================================
+
+논문제목: A Compute-in-Memory Decoding Architecture for Posit-to-Floating-Point Conversion
+학술지: IEEE Access
+발행연도: 2025
+수행기관: 한국전자기술연구원
+출처과제번호: 2710081803
+출처과제명: 데이터 플로우 구조 기반 PIM의 실행 및 프로그래밍 모델 개발
+DOI: https://doi.org/
+
+[초록]
+Modern computing systems are increasingly adopting low-precision floating-point formats to reduce memory overhead, particularly in large-scale applications such as large language models and scientific computing. Low-precision formats, however, are vulnerable to reduced numerical accuracy and provide only a limited dynamic range. The posit format, which incorporates a variable-length regime structure, has gained attention for providing higher precision and a broader dynamic range compared to conventional low-precision floating-point representations. Despite such advantages, conventional computing architectures are still based on IEEE 754 floating-point arithmetic, where achieving parallel and efficient posit-to-floating-point decoding remains a significant challenge. This paper proposesaCompute-in-Memory (CIM) architecture for posit-to-floating-point conversion that leverages the inherent parallelism of memory arrays to perform concurrent conversion of multiple posit values in a fixed number of cycles with negligible hardware overhead. Thearchitecture implements key modulesforposit decodingthroughbitwisein-memory logic operations, extending the state-of-the-art PIM microarchitecture to enable a wider range of microoperations. Experimental results based on RRAMcrossbarsimulationdemonstrateanaverageimprovements of 3.3×and5.04×inthroughputandenergyefficiency,respectively,comparedtoabaselineCMOSdecoding architecture
+
+============================================================
+
+논문제목: Duplex: A Device for Large Language Models with Mixture of Experts, Grouped Query Attention, and Continuous Batching
+학술지: Proceedings - 2024 57th IEEE/ACM International Symposium on Microarchitecture (MICRO)
+발행연도: 2024
+수행기관: 한국전자기술연구원
+출처과제번호: 2710006713
+출처과제명: 시뮬레이션 기반 고속/고정확도 데이터센터 워크로드/시스템 분석 플랫폼 개발
+DOI: https://doi.org/10.1109/MICRO61859.2024.00105
+
+[초록]
+Large language models (LLMs) have emerged due to their capability to generate high-quality content across diverse contexts. To reduce their explosively increasing demands for computing resources, a mixture of experts (MoE) has emerged. The MoE layer enables exploiting a huge number of parameters with less computation. Applying state-of-the-art continuous batching increases throughput; however, it leads to frequent DRAM access in the MoE and attention layers. We observe that conventional computing devices have limitations when processing the MoE and attention layers, which dominate the total execution time and exhibit low arithmetic intensity (Op/B). Processing MoE layers only with devices targeting low-Op/B such as processing-in-memory (PIM) architectures is challenging due to the fluctuating Op/B in the MoE layer caused by continuous batching, To address these challenges, we propose Duplex, which comprises xPU tailored for high-Op/B and Logic-PIM to effectively perform low-Op/B operation within a single device. Duplex selects the most suitable processor based on the Op/B of each layer within LLMs. As the Op/B of the MoE layer is at least 1 and that of the attention layer has a value of 4?8 for grouped query attention, prior PIM architectures are not efficient, which place processing units inside DRAM dies and only target extremely low-Op/B (under one) operations. Based on recent trends, Logic-Pimadds more through-silicon vias (TSVs) to enable high-bandwidth communication between the DRAM die and the logic die and place powerful processing units on the logic die, which is best suited for handling low-Op/B operations ranging from few to a few dozens. To maximally utilize the xPU and Logic-Pim,we propose expert and attention co-processing. By exploiting proper processing units for MoE and attention layers, Duplex shows up to 2.67 × higher throughput and consumes 42.0% less energy compared to GPU systems for LLM inference.
+
+============================================================
+
+논문제목: Darwin: A DRAM-Based Multi-Level Processing-in-Memory Architecture for Column-Oriented Database
+학술지: IEEE Transactions on Emerging Topics in Computing
+발행연도: 2025
+수행기관: 한국과학기술원
+출처과제번호: 2710079263
+출처과제명: 비대면·인공지능 사회를 위한 반도체 시스템 융합혁신기술 개발
+DOI: https://doi.org/10.1109/TETC.2024.3493132
+
+[초록]
+We propose Darwin, a practical LRDIMM-based multi-level Processing-in-memory (PIM) architecture for data analytics, which exploits the internal bandwidth of DRAM using the bank-, bank group-, chip-, and rank-level parallelisms. Considering the properties of data analytics operators and DRAM's area constraints, Darwin maximizes the internal bandwidth by placing the PIM processing units, buffers, and control circuits across the hierarchy of DRAM. Darwin supports a novel PIM instruction architecture that concatenates instructions for multiple thread executions on bank group processing entities, addressing the command bottleneck by enabling separate control of up to 512 different in-memory processing units simultaneously. We build a cycle-accurate simulation framework to evaluate Darwin with various DRAM configurations, optimization schemes and workloads. Darwin achieves up to 14.7× speedup over the non-optimized version, leveraging many optimization schemes. Darwin architecture achieves 4.0×-43.9× higher throughput and reduces energy consumption by 85.7% than the baseline CPU system (Intel Xeon Gold 6226 + 4 channels of DDR4-2933) for essential data analytics operators. Compared to the state-of-the-art PIM, Darwin achieves up to 7.5× and 7.1× in the basic query operators and TPC-H queries, respectively. Darwin in GDDR6 configuration requires only 5.6% area overhead, suggesting a promising PIM solution for the future main memory system.
+
+============================================================
+
+논문제목: A Compute-in-Memory Decoding Architecture for Posit-to-Floating-Point Conversion
+학술지: IEEE Access
+발행연도: 2025
+수행기관: 한국전자기술연구원
+출처과제번호: 2710085359
+출처과제명: 고속인터페이스기반 프로그래머블 컴퓨팅 아키텍처 PIM 메모리 반도체 기술 개발
+DOI: https://doi.org/
+
+[초록]
+Modern computing systems are increasingly adopting low-precision floating-point formats to reduce memory overhead, particularly in large-scale applications such as large language models and scientific computing. Low-precision formats, however, are vulnerable to reduced numerical accuracy and provide only a limited dynamic range. The posit format, which incorporates a variable-length regime structure, has gained attention for providing higher precision and a broader dynamic range compared to conventional low-precision floating-point representations. Despite such advantages, conventional computing architectures are still based on IEEE 754 floating-point arithmetic, where achieving parallel and efficient posit-to-floating-point decoding remains a significant challenge. This paper proposesaCompute-in-Memory (CIM) architecture for posit-to-floating-point conversion that leverages the inherent parallelism of memory arrays to perform concurrent conversion of multiple posit values in a fixed number of cycles with negligible hardware overhead. Thearchitecture implements key modulesforposit decodingthroughbitwisein-memory logic operations, extending the state-of-the-art PIM microarchitecture to enable a wider range of microoperations. Experimental results based on RRAMcrossbarsimulationdemonstrateanaverageimprovements of 3.3×and5.04×inthroughputandenergyefficiency,respectively,comparedtoabaselineCMOSdecoding architecture
+
+============================================================
+
+논문제목: DPIM: A 2T1C eDRAM Transformer-in-Memory Chip With Sparsity-Aware Quantization and Heterogeneous Dense?Sparse Core
+학술지: IEEE Journal of Solid-State Circuits
+발행연도: 2025
+수행기관: 한국과학기술원
+출처과제번호: 2710075328
+출처과제명: DRAM 기반 고성능 PIM 메모리 반도체 기술 개발
+DOI: https://doi.org/10.1109/JSSC.2025.3607826
+
+[초록]
+Transformer models have revolutionized artificial intelligence (AI) applications across various domains, but their increasing complexity poses significant challenges in terms of computational and memory demands. While processing-in-memory (PIM) paradigms have been adopted to address these limitations, existing PIM-based transformer accelerators still face hurdles such as: 1) focusing solely on optimizing attention layers; 2) lack of sparsity exploitation for transformers; and 3) limited PIM macro capacity and low cell density, which degrades on-chip data reuse and increases external memory access (EMA). This article presents DPIM, a novel 2T1C eDRAM-based transformer-in-memory chip that addresses these challenges through three key innovations: 1) a sparsity-aware quantization (SAQ) scheme that significantly increases bit-slice sparsity in both activation and weight data, achieving ratios of 83.3% and 88.4%, respectively, with minimal accuracy loss; 2) a heterogeneous PIM core capable of efficiently handling both sparse and dense matrix multiplications (MMs); and 3) a high-density 2T1C eDRAM cell with a density of 1.38 Mb/mm2, enabling large-capacity PIM macros. By integrating these features, DPIM achieves improved computational efficiency and reduced EMA with enhanced on-chip data reuse. The DPIM chip, fabricated using 28-nm CMOS technology, achieves a throughput of 3.03?12.12 TOPS and an energy efficiency of 4.84?19.36 TOPS/W, all measured across INT8 and INT4 operations, respectively. It achieves a throughput density of 0.55 TOPS/mm2 with INT8 operation. With a total macro size of 4608 kb, the chip occupies a die area of 20.25 mm2 and operates at frequencies from 50 to 285 MHz with a supply voltage of 0.85?1.0 V. The DPIM successfully executes BERT-Large on the general language understanding evaluation (GLUE) dataset. Its macro density is 1413 kb/mm2, and the resulting density figure-of-merit (FoM) (macro density × throughput density) is 1.6× ? 115.8× higher than previous works, representing a significant advancement in hardware design for efficient transformer processing.
+
+============================================================
+
+논문제목: A Fully Integrated Analog Processing­in­Memory System Based on Charge­Trap Flash Synapse Arrays and Successive Integration­and­Rescaling Neurons
+학술지: Advanced Intelligent Systems
+발행연도: 2025
+수행기관: 서울시립대학교산학협력단
+출처과제번호: 2710071123
+출처과제명: CMOS 로직 공정과 호환 가능한 memcapacitor 소자 및 전압 합산 기반 PIM 응용 시스템 개발
+DOI: https://doi.org/10.1002/aisy.202501046
+
+[초록]
+The increasing demands of data-centric applications continue to expose the fundamental bandwidth bottleneck of the von Neumann architecture, where memory and computation are separated. Analog processing-in-memory (PIM) offers a promising pathway to overcome this limitation, and charge-trap flash (CTF) synapses stand out as attractive candidates owing to their scalability, multilevel storage, and complementary metal-oxide-semiconductor (CMOS) compatibility. In this work, a hardware-level analog PIM system is presented that integrates CTF synapse arrays, CMOS-based wordline drivers, and a novel successive integration-and-rescaling (SIR) neuron circuit in a chip-on-board configuration. Unlike conventional neuron designs that rely heavily on analog-to-digital conversion, the proposed SIR neuron performs bit-sliced accumulation entirely in the analog domain. This architecture not only minimizes analog-to-digital converter overhead but also achieves excellent linearity through input-node stabilization and functional capacitor separation, thereby enhancing both computational accuracy and area efficiency. The fabricated system is validated through handwritten digit classification on the modified national institute of standards and technology dataset, achieving an accuracy of 72.93%, which is only 3.91 percentage points lower than the software baseline under identical precision. These results underscore the pivotal role of the SIR neuron in bridging device-level innovations with system-level integration, positioning CTF-based analog PIM as a scalable and energy-efficient platform for neuromorphic computing.
+
+============================================================
+
+논문제목: A Dual-Precision and Low-Power CNN Inference Engine Using a Heterogeneous Processing-in-Memory Architecture
+학술지: IEEE transactions on circuits and systems. a publication of the IEEE Circuits and Systems Society. I, Regular papers
+발행연도: 2024
+수행기관: 한국과학기술원
+출처과제번호: 2710008706
+출처과제명: PIM 반도체 설계연구센터
+DOI: https://doi.org/10.1109/tcsi.2024.3395842
+
+[초록]
+In this article, we present an energy-scalable CNN model that can adapt to different hardware resource constraints. Specifically, we propose a dual-precision network, named DualNet, that leverages two independent bit-precision paths (INT4 and ternary-binary). DualNet achieves both high accuracy and low complexity by balancing the ratio between two paths. We also present an evolutionary algorithm that allows the automatic search of the optimal ratios. In addition to the novel CNN architecture design, we develop a heterogeneous processing-in-memory (PIM) hardware that integrates SRAM- and eDRAM-based PIMs to efficiently compute two precision paths in parallel. To verify the energy efficiency of DualNet computed on the heterogeneous PIM, we prototyped a test chip in 28nm CMOS technology. To maximize the hardware efficiency, we utilize an improved data mapping scheme achieving the most effective deployment of DualNets on multiple PIM arrays. With the proposed SW-HW co-optimization, we can obtain the most energy-efficient DualNet model operating on the actual PIM hardware. Compared to the other quantized networks with a single bit-precision, DualNet reduces the energy consumption, memory footprint, and latency by 29.0%, 49.5%, 47.3% on average, respectively, for CIFAR-10/100 and ImageNet datasets.
+
+============================================================
+
+논문제목: 프로세싱 인 메모리의 다중연산장치 관리방법 및 하드웨어 구조 연구
+학술지: 2017 대한임베디드공학회 추계학술대회 논문집
+발행연도: 2017
+수행기관: 전자부품연구원
+출처과제번호: 1711057245
+출처과제명: Processing in Memory 반도체 아키텍처 및 데이터 집약적 응용처리를 위한 병렬처리 기술 개발
+
+[초록]
+Processing in memory (PIM) has been attracting considerable attention as a solution for memory wall. Since PIM is a special memory integrated with computational logic by using 3D-IC technology, this new computer paradigm can overcome the drawback of existing computer systems resulting from the memory bottleneck. Our research aims to implement a practical PIM chip. Therefore this paper studied and proposed detailed hardware architecture of PIM. Functions and performance of the proposed PIM architecture were verified by comparing between experimental results of the proposed PIM prototype and the existing computer system.
+
+============================================================
+
+논문제목: Highly Parallel Regular Expression Matching Using a Real Processing-in-Memory System
+학술지: IEEE Access
+발행연도: 2025
+수행기관: 한양대학
+출처과제번호: 2710061555
+출처과제명: Processing-in-Memory 보안 기술 개발
+DOI: https://doi.org/10.1109/ACCESS.2025.3532944
+
+[초록]
+Processing-in-Memory (PIM) is an emerging computing paradigm exploiting a cutting-edge memory device (PIM device) that integrates hundreds to thousands of processing units with the memory modules. A data-intensive application running in a host system can offload a portion of its tasks to the processing units in the PIM device, not only to exploit their processing capabilities but also to mitigate the contention in host memory accesses. However, such task offloading has the intrinsic overhead of transferring data between host memory and PIM device, which frequently hinders obtaining performance gain by exploiting the device. In this paper, we present a framework for a PIM-enabled regular expression matching that offloads the pattern-matching (scanning) engine to the PIM device, taking care to minimize the overhead. We implement an application based on the framework that runs on an off-the-shelf PIM system that has recently emerged into the market, and investigate the feasibility of Processing-in-Memory by comparing its performance with its PIM-oblivious implementation. Experimental results on a real system show that our application reduces the overall execution time by up to 96% compared with the multithreaded PIM-oblivious application when the input data size is 1 GB.
+
+============================================================
+
+논문제목: PISA-DMA: Processing-in-Memory Instruction Set Architecture Using DMA
+학술지: IEEE ACCESS
+발행연도: 2023
+수행기관: 고려대학교
+출처과제번호: 1711193507
+출처과제명: 재구성형 PIM 디바이스 기반의 Memory-Centric 아키텍처 개발
+DOI: https://doi.org/10.1109/access.2023.3238812
+
+[초록]
+Processing-in-memory (PIM) has attracted attention to overcome the memory bandwidth limitation, especially for computing memory-intensive DNN applications. Most PIM approaches use the CPU's memory requests to deliver instructions and operands to the PIM engines, making a core busy and incurring unnecessary data transfer, thus, resulting in significant offloading overhead. DMA can resolve the issue by transferring a high volume of successive data without intervening CPU and polluting the memory hierarchy, thus perfectly fitting the PIM concept. However, the small computing resources of DRAM-based PIM devices allow us to transfer only small amounts of data at one DMA transaction and require a large number of descriptors, thus still incurring significant offloading overhead. This paper introduces PIM Instruction Set Architecture (ISA) using a DMA descriptor called PISA-DMA to express a PIM opcode and operand in a single descriptor. Our ISA makes PIM programming intuitive by thinking of committing one PIM instruction as completing one DMA transaction and representing a sequence of PIM instructions using the DMA descriptor list. Also, PISA-DMA minimizes the offloading overhead while guaranteeing compatibility with commercial platforms. Our PISA-DMA eliminates the opcode offloading overhead and achieves 1.25x, 1.31x, and 1.29x speedup over the baseline PIM at the sequence length of 128 with the BERT, RoBERTa, and GPT-2 models, respectively, in ONNX runtime with real machines. Also, we study how our proposed PISA affects performance in compiler optimization and show that the operator fusion of matrix-matrix multiplication and element-wise addition achieved 1.04x speedup, a similar performance gain using conventional ISAs.
+
+============================================================
+
+논문제목: Refresh Methods and Accuracy Evaluation for 2T0C DRAM based Processing-in-memory
+학술지: 2023 International Technical Conference on Circuits/Systems, Computers, and Communications (ITC-CSCC)
+발행연도: 2023
+수행기관: 서울과학기술대학교
+출처과제번호: 1711179310
+출처과제명: AI 반도체 프로세싱 소프트웨어 핵심기술 개발
+DOI: https://doi.org/10.1109/ITC-CSCC58803.2023.1021283
+
+[초록]
+Processing-in-memory (PIM) technology has been expected to be an effective memory technology for artificial intelligence (AI) computation with high data throughput and energy efficiency. Among various PIM component devices, 2-transistor (2TOC) DRAM has attracted attention due to its superior sensing speed, on/off ratio, and chip density. However, its retention characteristic requires frequent refresh, which results in considerable power consumption. Therefore, finding the effective refresh method that minimizes energy consumption while maintaining accuracy is crucial. In this paper, we introduce burst refresh and periodic refresh methods and compare their performance. We extract the accuracy-time graph when the refresh techniques described above are applied through our developed 2TOC DRAM-based PIM simulation framework, which can evaluate inference accuracy. Under the conditions of this paper, when a 32 ms refresh is performed, burst refresh causes the accuracy drop to 83 % just before the refresh, while periodic refresh showed an improved performance to maintain accuracy at around 88?92 %.
+
+============================================================
+
+논문제목: An Overview of Sparsity Exploitation in CNNs for On-Device Intelligence With Software-Hardware Cross-Layer Optimizations
+학술지: IEEE JOURNAL ON EMERGING AND SELECTED TOPICS IN CIRCUITS AND SYSTEMS
+발행연도: 2021
+수행기관: 한국과학기술원
+출처과제번호: 1711134619
+출처과제명: DRAM 기반 DNN 연산기 통합 PIM DRAM 칩 개발
+DOI: 10.1109/JETCAS.2021.3120417
+
+[초록]
+This paper presents a detailed overview of sparsity exploitation in deep neural network (DNN) accelerators. Despite the algorithmic advancements which drove DNNs to become the standard of artificial intelligence (AI), DNNs' computational and memory overhead limits the deployment of off-the-shelf models on edge devices. Numerous optimizations have been widely studied to efficiently run DNN models on performance and energy-limited mobile devices, from both software's and hardware's perspective. Sparsity exploitation one of the mainstream optimization techniques, whose objective is to achieve higher efficiency and speed through avoiding redundant multiplyand-accumulate (MAC) operations cause by zero operands. This paper overviews previous contributions on sparsity exploitation from both the software and hardware side of views, with the newly proposed taxonomy to categorize and analyze the works. On the software side, different sparsification algorithms are explained, including pruning and output speculation. From the hardware's perspective, advancements in architectures to efficiently handle sparse DNN computation are elaborated. The proposed taxonomy will help classify previous accelerators easily, by which sparsity they exploit and how. In addition, related works on sparse processing-in-memory (PIM) architectures and similarity exploitation are briefly introduced.
+
+============================================================
+
+논문제목: PIMCaffe: Functional Evaluation of a Machine Learning Framework for In-Memory Neural Processing Unit
+학술지: IEEE ACCESS
+발행연도: 2021
+수행기관: 연세대학
+출처과제번호: 1711134555
+출처과제명: PIM 활용을 위한 SW 플랫폼 개발
+DOI: 10.1109/ACCESS.2021.3094043
+
+[초록]
+The large amount of memory usage in recent machine learning applications imposes a significant system burden with respect to power and processing speed. To cope with such a problem, Processing-In-Memory (PIM) techniques can be applied as an alternative solution. Especially, the recommendation system, which is one of the major machine learning applications used in data centers, requires a large memory capacity and therefore represents a suitable candidate application that could be helped by the PIM technique. In this paper, we introduce a machine learning framework, PIMCaffe, designed for in-memory neural processing units and its evaluation environment. PIMCaffe consists of two components: a Caffe2-based deep learning framework that supports PIM acceleration and a PIM-emulating hardware platform. We develop a suite of functions, libraries, application programming interfaces, and a device driver to support the framework. In addition, we implement a prototype Neural Processing Unit (NPU) in PIMCaffe to evaluate the performance of our platform with machine learning applications. Our prototype NPU design includes a vector processor for parallel vector processing and a systolic array unit for matrix multiplication. Using the proposed software framework, we perform a detailed analysis of the in-memory neural processing unit. PIMCaffe supports evaluations of recommendation systems and various convolutional neural network models on the in-memory neural processing unit. PIMCaffe with the NPU shows up to 2.26 x, 5.99 x, and 1.71 x speedup, compared to the ARM Cortex-A53 CPU, for the recommendation system, AlexNet, and ResNet-50, respectively.
+
+============================================================
+
+논문제목: SpDRAM: Efficient In-DRAM Acceleration of Sparse Matrix-Vector Multiplication
+학술지: IEEE access : practical research, open solutions
+발행연도: 2024
+수행기관: 서울과학기술대학
+출처과제번호: 2710006659
+출처과제명: AI 반도체 프로세싱 소프트웨어 핵심기술 개발
+DOI: https://doi.org/10.1109/access.2024.3505622
+
+[초록]
+We introduce novel sparsity-aware in-DRAM matrix mapping techniques and a corresponding DRAM-based acceleration framework, termed SpDRAM, which utilizes a triple row activation scheme to efficiently handle sparse matrix-vector multiplication (SpMV). We found that reducing operations by sparsity relies heavily on how matrices are mapped into DRAM banks, which operate row by row. These banks operate row by row. From this insight, we developed two distinct matrix mapping techniques aimed at maximizing the reduction of row operations with minimal design overhead: Output-aware Matrix Permutation (OMP) and Zero-aware Matrix Column Sorting (ZMCS). Additionally, we propose a Multiplication Deferring (MD) scheme that leverages the prevalent bit-level sparsity in matrix values to decrease the effective bit-width required for in-bank multiplication operations. Evaluation results demonstrate that the combination of our in-DRAM acceleration methods outperforms the latest DRAM-based PIM accelerator for SpMV, achieving a performance increase of up to 7.54× and a 22.4× improvement in energy efficiency in a wide range of SpMV tasks.
+
+============================================================
+
+논문제목: Advanced 2T0C DRAM Technologies for Processing-In-Memory―Part I: Vertical Transistor on Gate (VTG) DRAM Cell Structure
+학술지: IEEE Transactions on Electron Devices
+발행연도: 2024
+수행기관: 이화여자대학
+출처과제번호: 2710064373
+출처과제명: 2T DRAM 기반 저전력/고성능 PIM 셀, 집적회로 및 아키텍처 개발
+DOI: https://doi.org/10.1109/TED.2024.3469183
+
+[초록]
+Two-transistor-zero-capacitor (2T0C) DRAM cell has been proposed and extensively investigated as a memory device for processing-in-memory (PIM) applications. In this two-part article, we propose a novel vertical-transistor on gate (VTG) 2T0C DRAM cell structure and the refresh technique for PIM applications and demonstrate their effectiveness. Due to its volatile characteristics and capacitorless structure, conventional logic compatible 2T0C DRAM-based PIM experiences a decline in inference accuracy. As a result, the frequent refresh operations are inevitable to achieve acceptable inference accuracy, which may result in significant energy consumption. In this article, we proposed and modeled the unit cell of VTG 2T0C DRAM using TCAD simulation and described the device characterization. Compared to a planar-only 2T0C DRAMwith 65-nm process, the VTG DRAM cell structure achieved an improvement of approximately 567% in retention characteristics. The inference accuracy and the hardware performance of the VTG DRAM-based PIM macro will be described in Part II of this article.
+
+============================================================
+
+논문제목: A Dual-Precision and Low-Power CNN Inference Engine Using a Heterogeneous Processing-in-Memory Architecture
+학술지: IEEE transactions on circuits and systems. a publication of the IEEE Circuits and Systems Society. I, Regular papers
+발행연도: 2024
+수행기관: 고려대학
+출처과제번호: 2710008125
+출처과제명: IoT Intelligence용 eFLASH 파운드리 공정 기반 MPU/Connectivity/경량 신경망 통합 반도체 개발
+DOI: https://doi.org/10.1109/tcsi.2024.3395842
+
+[초록]
+Abstract― In this article, we present an energy-scalable CNN model that can adapt to different hardware resource constraints. Specifically, we propose a dual-precision network, named DualNet, that leverages two independent bit-precision paths (INT4 and ternary-binary). DualNet achieves both high accuracy and low complexity by balancing the ratio between two paths. We also present an evolutionary algorithm that allows the automatic search of the optimal ratios. In addition to the novel CNN architecture design, we develop a heterogeneous processing-in-memory (PIM) hardware that integrates SRAM- and eDRAM-based PIMs to efficiently compute two precision paths in parallel. To verify the energy efficiency of DualNet computed on the heterogeneous PIM, we prototyped a test chip in 28nm CMOS technology. To maximize the hardware efficiency, we utilize an improved data mapping scheme achieving the most effective deployment of DualNets on multiple PIM arrays. With the proposed SW-HW co-optimization, we can obtain the most energy-efficient DualNet model operating on the actual PIM hardware. Compared to the other quantized networks with a single bit-precision, DualNet reduces the energy consumption, memory footprint, and latency by 29.0%, 49.5%, 47.3% on average, respectively, for CIFAR10/100 and ImageNet datasets.
+
+============================================================
+
+논문제목: Volatile and Nonvolatile Memory Devices for Neuromorphic and Processing-in-memory Applications
+학술지: JOURNAL OF SEMICONDUCTOR TECHNOLOGY AND SCIENCE
+발행연도: 2022
+수행기관: 한국과학기술연구원(KIST)
+출처과제번호: 1711159770
+출처과제명: eFLASH 기반의 PIM 시냅스 어레이 제작 및 인공신경망 하드웨어 개발
+DOI: 10.5573/JSTS.2022.22.1.30
+
+[초록]
+The motivation for driving semiconductor devices can be found in the development of advanced computers which can contribute to the betterment in our daily lives. The contribution has been largely made by semiconductor logic devices traveling the pavements identified as technology nodes for device shrinkage that enables high-speed and low-power operations. Lighter and faster processors are the everlasting goals in electronics and computer science, and have been concerned with logic technologies. However, the vast amount of data that should be dealt are consistently requiring an innovative way out of the conventional serial data communication and processing. Data need to be processed in a shorter time but the irreducibilities in logic switching time, data propagation time in metallic interconnection accompanying RC delay, and the time amount spent in the serial communication between logic and memory units should be quenched. It is quite hard to control the former two factors which are largely determined by physical limits and fabrication technology ones in recent days but the latter still has room for reduction by novel devices and architectures specifically designed for maximizing the parallelism in data processing and communication. The semiconductor memories let aside the advancements in processor technologies now is being moved to the center of renovation toward the future computers in the ultimate architecture. In this review, the roles and requirements of semiconductor memories for memory-oriented processors are investigated in the highlights of applications in the neuromorphic system and processing-in-memory (PIM) architectures.
+
+============================================================
+
+논문제목: In-DRAM bitwise processing circuit for low-power and fast computation
+학술지: ELECTRONICS LETTERS
+발행연도: 2017
+수행기관: 전자부품연구원
+출처과제번호: 1711057245
+출처과제명: Processing in Memory 반도체 아키텍처 및 데이터 집약적 응용처리를 위한 병렬처리 기술 개발
+
+[초록]
+In-DRAM processing circuit is able to reduce operation time and power consumption than the traditional CPU + MEMORY system in performing the complicated computation such as convolution. These benefits are gained by bitwise and parallel processing of the in-DRAM convolution circuit. To realise the in-DRAM circuit, an inter-bank processing circuit is proposed with bitwise summation/comparison circuit for performing convolution inside DRAM. Compared to the intra-bank bitwise operation, the inter-bank circuit can significantly reduce the power consumption and the number of row activation cycles to accomplish convolution. For the number of cycles, the inter-bank circuit takes only 65 cycles for calculating 16 x 16 feature map. On the contrary, the intra-bank needs as many as 192 cycles. In terms of power consumption, the inter-bank circuit consumes smaller power by 35% than the intra-bank. In the proposed in-DRAM processing circuit, no complicated multiplier and adder are needed in performing the convolution. The Modified National Institute of Standards and Technology (MNIST) recognition rate of the proposed bitwise processing circuit can be as high as 97.28%, indicating very little loss due to the ternary kernels.
+
+============================================================
+
+논문제목: A decoupled bit shifting technique using data encoding/decoding for DRAM redundancy repair
+학술지: IEICE ELECTRONICS EXPRESS
+발행연도: 2017
+수행기관: 전자부품연구원
+출처과제번호: 1711057245
+출처과제명: Processing in Memory 반도체 아키텍처 및 데이터 집약적 응용처리를 위한 병렬처리 기술 개발
+
+[초록]
+Redundancy repairs are commonly used to support fault tolerance in DRAM systems and recently, the processor performance has been greatly improved, so DRAM access latency has become an important issue. However, existing redundancy repairs using shift logic have difficulty in further reducing the latency due to their design limitations. In this paper, we propose a novel, decoupled bit shifting technique that uses data encoding and decoding to resolve this limitation. Our technique decouples the conventional shifting logic into two units, a bit selection vector generator (BSVG) and a data manipulation unit (DMU), to reduce the latency overhead of the shifting logic. Our technique can apply the BSVG in parallel with other logic consuming long latency operations, thereby reducing the total latency compared to conventional shifting logic. We implement both serial and parallel approaches to demonstrate that the parallel approach performs significantly better than the serial one in terms of delay, area, and dynamic power consumption. The experimental results show that our bit shifting technique is applicable for redundancy repair technique in state-of-the-art DRAM architectures.
