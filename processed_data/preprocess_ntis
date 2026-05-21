@@ -1,0 +1,228 @@
+import xml.etree.ElementTree as ET
+import glob, re, os
+ 
+# ============================================================
+# 설정값
+# ============================================================
+ 
+# 입력 폴더 경로 설정
+NPU_PROJECT_DIR  = './data/npu/project'   # project_NPU XML 파일들
+NPU_RPAPER_DIR   = './data/npu/rpaper'    # rpaper_NPU XML 파일들
+NPU_PATENT_DIR   = './data/npu/patent'    # patent_NPU XML 파일들
+PIM_PROJECT_DIR  = './data/pim/project'   # project_PIM XML 파일들
+PIM_RPAPER_DIR   = './data/pim/rpaper'    # rpaper_PIM XML 파일들
+PIM_PATENT_DIR   = './data/pim/patent'    # patent_PIM XML 파일들
+ 
+# 출력 폴더
+OUTPUT_DIR = './processed_data'
+ 
+# 노이즈 제거 설정
+KEEP_LARGE = {'정보/통신', '전기/전자', '정보', '통신'}
+ 
+NPU_KEEP_KEYWORDS = ['NPU', 'AI반도체', '인공지능반도체', '메모리반도체',
+                     '가속기', 'DRAM', 'HBM', 'CXL', 'SoC', '뉴로모픽',
+                     '딥러닝', '머신러닝', '인공지능', '반도체']
+ 
+PIM_KEEP_KEYWORDS = ['PIM', 'NPU', 'AI반도체', '인공지능반도체', '메모리반도체',
+                     '가속기', 'DRAM', 'HBM', 'CXL', 'PNM', 'SoC', '뉴로모픽',
+                     '딥러닝', '머신러닝', '인공지능', '반도체']
+ 
+# 수동 제외 과제번호
+NPU_EXCLUDE = {'1545018644', '1711054342'}
+PIM_EXCLUDE = {'1345272192', '1415107083', '1575000742', '2340000718'}
+ 
+CHUNK_SIZE = 100  # 파일당 건수
+SEP = '\n\n' + '='*60 + '\n\n'
+ 
+# ============================================================
+# 유틸 함수
+# ============================================================
+ 
+def clean(text):
+    return re.sub(r'<[^>]+>', '', text or '').strip()
+ 
+def format_budget(budget_str):
+    try:
+        val = int(budget_str)
+        if val >= 100000000:
+            rem = val % 100000000
+            result = f"{val // 100000000}억"
+            if rem >= 10000:
+                result += f" {rem // 10000:,}만원"
+            else:
+                result += "원"
+            return result
+        elif val >= 10000:
+            return f"{val // 10000:,}만원"
+        else:
+            return f"{val:,}원"
+    except:
+        return budget_str
+ 
+def is_project_related(hit, keep_keywords, exclude_nums):
+    pnum = hit.findtext('ProjectNumber', '').strip()
+    if pnum in exclude_nums:
+        return False
+    # ScienceClass 기준
+    for sc in hit.findall('.//ScienceClass'):
+        if clean(sc.findtext('Large', '')) in KEEP_LARGE:
+            return True
+    # 과제명 키워드 기준
+    title = clean(hit.findtext('.//ProjectTitle/Korean', ''))
+    if any(k in title for k in keep_keywords):
+        return True
+    return False
+ 
+def project_to_text(hit):
+    pnum     = hit.findtext('ProjectNumber', '')
+    title_ko = clean(hit.findtext('.//ProjectTitle/Korean', ''))
+    title_en = clean(hit.findtext('.//ProjectTitle/English', ''))
+    manager  = clean(hit.findtext('.//Manager/Name', ''))
+    agency   = clean(hit.findtext('LeadAgency', ''))
+    ministry = clean(hit.findtext('.//Ministry/Name', ''))
+    year     = hit.findtext('ProjectYear', '')
+    budget   = hit.findtext('GovernmentFunds', '0') or '0'
+    goal     = clean(hit.findtext('.//Goal/Full', ''))
+    abstract = clean(hit.findtext('.//Abstract/Full', ''))
+    effect   = clean(hit.findtext('.//Effect/Full', ''))
+    kw_ko    = clean(hit.findtext('.//Keyword/Korean', ''))
+ 
+    parts = [f"과제번호: {pnum}", f"과제명: {title_ko}"]
+    if title_en: parts.append(f"영문명: {title_en}")
+    parts += [f"주관기관: {agency}", f"주무부처: {ministry}",
+              f"연구책임자: {manager}", f"연도: {year}",
+              f"정부출연금: {format_budget(budget)}"]
+    if kw_ko: parts.append(f"키워드: {kw_ko}")
+    if goal: parts.append(f"\n[연구목표]\n{goal}")
+    if abstract: parts.append(f"\n[연구요약]\n{abstract}")
+    if effect: parts.append(f"\n[기대효과]\n{effect}")
+    return '\n'.join(parts)
+ 
+def rpaper_to_text(hit):
+    title    = clean(hit.findtext('ResultTitle', ''))
+    abstract = clean(hit.findtext('.//Abstract/Full', ''))
+    journal  = hit.findtext('JournalName', '') or ''
+    year     = hit.findtext('PubYear', '') or ''
+    pid      = hit.findtext('ProjectID', '') or ''
+    ptitle   = hit.findtext('ProjectTitle', '') or ''
+    agency   = hit.findtext('PerformAgency', '') or ''
+    doi      = hit.findtext('DigitalObjectIdentifier', '') or ''
+ 
+    parts = [f"논문제목: {title}"]
+    if journal: parts.append(f"학술지: {journal}")
+    if year: parts.append(f"발행연도: {year}")
+    if agency: parts.append(f"수행기관: {agency}")
+    if pid: parts.append(f"출처과제번호: {pid}")
+    if ptitle: parts.append(f"출처과제명: {ptitle}")
+    if doi: parts.append(f"DOI: {doi}")
+    if abstract: parts.append(f"\n[초록]\n{abstract}")
+    return '\n'.join(parts)
+ 
+def patent_to_text(hit):
+    title    = clean(hit.findtext('ResultTitle', ''))
+    year     = hit.findtext('Year', '') or ''
+    country  = hit.findtext('RegistCountry', '') or ''
+    reg_num  = hit.findtext('RegistNumber', '') or ''
+    reg_type = hit.findtext('RegistType', '') or ''
+    ipr_type = hit.findtext('IprType', '') or ''
+    agency   = hit.findtext('PerformAgency', '') or ''
+    pid      = hit.findtext('ProjectID', '') or ''
+    ptitle   = hit.findtext('ProjectTitle', '') or ''
+    ministry = hit.findtext('MinistryName', '') or ''
+    tech     = hit.findtext('SixTechnology', '') or ''
+    road     = hit.findtext('TechnologyRoadMap', '') or ''
+    sci1     = hit.findtext('ScienceClass1', '') or ''
+    sci2     = hit.findtext('ScienceClass2', '') or ''
+    sci3     = hit.findtext('ScienceClass3', '') or ''
+ 
+    parts = [f"특허제목: {title}"]
+    if country: parts.append(f"등록국가: {country}")
+    if reg_num: parts.append(f"등록번호: {reg_num}")
+    if reg_type: parts.append(f"등록유형: {reg_type}")
+    if ipr_type: parts.append(f"지식재산권유형: {ipr_type}")
+    if year: parts.append(f"연도: {year}")
+    if agency: parts.append(f"수행기관: {agency}")
+    if ministry: parts.append(f"주무부처: {ministry}")
+    if pid: parts.append(f"출처과제번호: {pid}")
+    if ptitle: parts.append(f"출처과제명: {ptitle}")
+    sci = ', '.join(filter(None, [sci1, sci2, sci3]))
+    if sci: parts.append(f"기술분류: {sci}")
+    if tech: parts.append(f"기술분야: {tech}")
+    if road: parts.append(f"기술로드맵: {road}")
+    return '\n'.join(parts)
+ 
+def save_chunks(texts, output_dir, prefix):
+    os.makedirs(output_dir, exist_ok=True)
+    for i in range(0, len(texts), CHUNK_SIZE):
+        idx = i // CHUNK_SIZE + 1
+        with open(f'{output_dir}/{prefix}_{idx:03d}.txt', 'w', encoding='utf-8') as f:
+            f.write(SEP.join(texts[i:i+CHUNK_SIZE]))
+ 
+def process_project(xml_dir, keep_keywords, exclude_nums, output_dir, prefix):
+    valid_nums = set()
+    texts = []
+    for f in sorted(glob.glob(f'{xml_dir}/*.xml')):
+        tree = ET.parse(f)
+        for hit in tree.getroot().findall('.//HIT'):
+            if is_project_related(hit, keep_keywords, exclude_nums):
+                pnum = hit.findtext('ProjectNumber', '').strip()
+                valid_nums.add(pnum)
+                texts.append(project_to_text(hit))
+    save_chunks(texts, output_dir, prefix)
+    return valid_nums, len(texts)
+ 
+def process_rpaper(xml_dir, valid_nums, output_dir, prefix):
+    texts = []
+    for f in sorted(glob.glob(f'{xml_dir}/*.xml')):
+        tree = ET.parse(f)
+        for hit in tree.getroot().findall('.//HIT'):
+            pid = hit.findtext('ProjectID', '').strip()
+            if pid in valid_nums:
+                texts.append(rpaper_to_text(hit))
+    save_chunks(texts, output_dir, prefix)
+    return len(texts)
+ 
+def process_patent(xml_dir, valid_nums, output_dir, prefix):
+    texts = []
+    for f in sorted(glob.glob(f'{xml_dir}/*.xml')):
+        tree = ET.parse(f)
+        for hit in tree.getroot().findall('.//HIT'):
+            pid = hit.findtext('ProjectID', '').strip()
+            if pid in valid_nums:
+                texts.append(patent_to_text(hit))
+    save_chunks(texts, output_dir, prefix)
+    return len(texts)
+ 
+# ============================================================
+# 실행
+# ============================================================
+print("=" * 50)
+print("NPU 처리 중...")
+npu_valid, npu_proj_cnt = process_project(
+    NPU_PROJECT_DIR, NPU_KEEP_KEYWORDS, NPU_EXCLUDE,
+    f'{OUTPUT_DIR}/npu', 'npu_project'
+)
+npu_rpaper_cnt = process_rpaper(NPU_RPAPER_DIR, npu_valid, f'{OUTPUT_DIR}/npu', 'npu_rpaper')
+npu_patent_cnt = process_patent(NPU_PATENT_DIR, npu_valid, f'{OUTPUT_DIR}/npu', 'npu_patent')
+ 
+print(f"  project: {npu_proj_cnt}건")
+print(f"  rpaper:  {npu_rpaper_cnt}건")
+print(f"  patent:  {npu_patent_cnt}건")
+ 
+print("\nPIM 처리 중...")
+pim_valid, pim_proj_cnt = process_project(
+    PIM_PROJECT_DIR, PIM_KEEP_KEYWORDS, PIM_EXCLUDE,
+    f'{OUTPUT_DIR}/pim', 'pim_project'
+)
+pim_rpaper_cnt = process_rpaper(PIM_RPAPER_DIR, pim_valid, f'{OUTPUT_DIR}/pim', 'pim_rpaper')
+pim_patent_cnt = process_patent(PIM_PATENT_DIR, pim_valid, f'{OUTPUT_DIR}/pim', 'pim_patent')
+ 
+print(f"  project: {pim_proj_cnt}건")
+print(f"  rpaper:  {pim_rpaper_cnt}건")
+print(f"  patent:  {pim_patent_cnt}건")
+ 
+print("\n완료!")
+print(f"총 {npu_proj_cnt+pim_proj_cnt}건 project")
+print(f"총 {npu_rpaper_cnt+pim_rpaper_cnt}건 rpaper")
+print(f"총 {npu_patent_cnt+pim_patent_cnt}건 patent")
+print(f"\n출력 위치: {OUTPUT_DIR}/")
