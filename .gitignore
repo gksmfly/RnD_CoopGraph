@@ -12,6 +12,7 @@ venv/
 env/
 ENV/
 .env/
+boaz/
 
 # Pytest / Coverage
 .pytest_cache/
@@ -42,3 +43,14 @@ logs/
 temp/
 
 data/
+
+# ===== 프로젝트 생성 파일 =====
+# 인덱싱 로그
+*_insert_log*.txt
+
+# KG 스토리지 (LightRAG 자동 생성, 용량 초과로 제외)
+# graphml은 별도 공유 필요 (Neo4j 팀에 직접 전달)
+kg_storage/
+
+# 시각화 결과물
+kg_graph*.html
