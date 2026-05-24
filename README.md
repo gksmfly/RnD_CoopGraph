@@ -168,20 +168,5 @@ npm run dev
 | 엔티티 타입 | 기관 / 기술분야 / 과제 / 연구자 / 부처 |
 | 주요 관계 | 부처감독, 연구비지원, 연구수행, 주관기관, 연구책임자 |
 
----
-
-## KG 재구축 (선택)
-
-이미 `kg_storage/`가 존재하면 이 단계는 불필요합니다.
-
-```bash
-# KG 인덱싱
-cd backend/kg_builder
-python insert_docs.py --topic all       # NPU + PIM 전체
-python insert_docs.py --topic NPU       # NPU만
-python insert_docs.py --topic all --limit 10  # 테스트 (10개)
-
-# 후처리
-python remap_entity_types.py            # 엔티티 타입 정규화
 python remap_relations.py               # 관계 레이블 정규화
 ```
