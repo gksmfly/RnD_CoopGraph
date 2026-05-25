@@ -126,8 +126,16 @@ relation{tuple_delimiter}양자화{tuple_delimiter}NPU{tuple_delimiter}핵심기
 """
 
 
+_patched = False
+
+
 def patch_ntis_prompts() -> None:
-    """LightRAG 초기화 전에 반드시 호출."""
+    """LightRAG 초기화 전에 반드시 호출. 중복 호출 무시."""
+    global _patched
+    if _patched:
+        return
+    _patched = True
+
     PROMPTS["DEFAULT_ENTITY_TYPES"] = NTIS_ENTITY_TYPES
 
     # 기본 예시 3개 전부 NTIS 도메인 예시로 교체
@@ -136,19 +144,38 @@ def patch_ntis_prompts() -> None:
     # 예시 3: 양자화 NPU 과제 (KAIST, 과기부)
     PROMPTS["entity_extraction_examples"] = [_EXAMPLE_1, _EXAMPLE_2, _EXAMPLE_3]
 
-    # ── 키워드 추출 프롬프트: 한국어 기관명 우선 추출 ──────────────
-    # 문제: LLM이 "한국전자통신연구원(ETRI)"을 영어 번역명으로 확장
-    #       → KG에 한국어로 저장된 엔티티와 매칭 실패
-    # 해결: 한국어 쿼리에서 기관명을 한국어 그대로 추출하도록 지시
+    # ── 키워드 추출 프롬프트: 모든 키워드 한국어 강제 ──────────────
+    # 문제1: LLM이 high_level_keywords를 영어로 번역
+    #        ("Industry cluster", "Collaboration") → 한국어 KG 관계 벡터 검색 실패
+    # 문제2: low_level_keywords가 너무 포괄적 ("AI", "반도체")
+    #        → 협력 관련 엔티티를 찾지 못함
+    # 해결: 모든 키워드(high/low 모두)를 한국어로 추출하도록 강제
     PROMPTS["keywords_extraction"] = PROMPTS["keywords_extraction"].replace(
         "5. **Language**: All extracted keywords MUST be in {language}. "
         "Proper nouns (e.g., personal names, place names, organization names) "
         "should be kept in their original language.",
         "5. **Language**: All extracted keywords MUST be in {language}. "
-        "**For Korean queries, extract Korean organization/institution names in Korean "
-        "(e.g., '한국전자통신연구원' not 'Electronics and Telecommunications Research Institute', "
-        "'과학기술정보통신부' not 'Ministry of Science and ICT'). "
-        "Keep short abbreviations (ETRI, NPU, PIM, KAIST) as supplementary variants only.**"
+        "**CRITICAL FOR KOREAN QUERIES: ALL keywords (both high_level and low_level) "
+        "MUST be in Korean. Do NOT translate any keyword to English. "
+        "Examples: '협력 클러스터' NOT 'cooperation cluster', "
+        "'AI 반도체' NOT 'AI semiconductor', '기관' NOT 'institution'. "
+        "Korean organization names must stay in Korean "
+        "(e.g., '한국전자통신연구원' NOT 'ETRI full name in English'). "
+        "Short tech abbreviations already in English are OK: NPU, PIM, KAIST, ETRI.**"
     )
+
+    # ── 키워드 추출 예시: 한국어 R&D 예시 추가 ──────────────────────
+    # 기존 예시가 모두 영어라 LLM이 한국어 쿼리도 영어로 번역하여 추출함.
+    # 한국어 쿼리에 대해 한국어 키워드를 추출하는 예시를 앞에 추가.
+    korean_example = (
+        'Example (Korean R&D query):\n\n'
+        'Query: "AI 반도체 분야 핵심 협력 클러스터를 알려줘"\n\n'
+        'Output:\n'
+        '{\n'
+        '  "high_level_keywords": ["AI 반도체", "협력 클러스터", "산학연 협력"],\n'
+        '  "low_level_keywords": ["AI 반도체", "협력", "클러스터", "기관", "과제"]\n'
+        '}\n\n'
+    )
+    PROMPTS["keywords_extraction_examples"] = [korean_example] + PROMPTS["keywords_extraction_examples"]
 
     print("[NTIS Prompts] LightRAG 프롬프트를 NTIS 한국어 버전으로 교체 완료")

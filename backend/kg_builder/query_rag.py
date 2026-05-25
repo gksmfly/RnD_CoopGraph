@@ -54,10 +54,16 @@ async def run_queries() -> None:
                 print(f"[오류] {e}")
 
 
+_MERGE_HINT = (
+    " (답변 시 동일한 클러스터·기관·기술에 관한 내용은 하나로 통합하여 "
+    "중복 없이 간결하게 정리해줘)"
+)
+
+
 async def query_once(question: str, mode: str = "hybrid") -> str:
     """단일 질의 (외부에서 호출용)"""
     rag = await get_query_rag()
-    return await rag.aquery(question, param=QueryParam(mode=mode, enable_rerank=False))
+    return await rag.aquery(question + _MERGE_HINT, param=QueryParam(mode=mode, enable_rerank=False))
 
 
 if __name__ == "__main__":

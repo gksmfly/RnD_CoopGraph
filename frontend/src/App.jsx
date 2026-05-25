@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import ReactMarkdown from 'react-markdown'
 
 const API = 'http://localhost:8000'
 
@@ -165,9 +166,9 @@ export default function App() {
                 <span className="text-xs text-gray-400 uppercase tracking-wider font-medium">답변</span>
                 <div className="flex-1 h-px bg-gray-200" />
               </div>
-              <pre className="whitespace-pre-wrap text-sm text-gray-800 leading-7 font-sans bg-white rounded-xl p-5 border border-gray-200 shadow-sm">
-                {answer}
-              </pre>
+              <div className="prose prose-sm max-w-none bg-white rounded-xl p-5 border border-gray-200 shadow-sm text-gray-800 leading-7">
+                <ReactMarkdown>{answer}</ReactMarkdown>
+              </div>
             </div>
           )}
 
@@ -186,7 +187,7 @@ export default function App() {
         <div className="bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between shadow-sm">
           <span className="text-sm font-medium text-gray-900">KG 시각화</span>
           <span className="text-xs text-gray-400">
-            {graphSrc.includes('highlight') ? '질의 관련 노드 강조' : 'Top 300 노드'}
+            {graphSrc.includes('highlight') ? '질의 핵심 서브그래프' : 'Top 300 노드'}
           </span>
         </div>
         <div className="flex-1 bg-gray-50">
@@ -204,7 +205,7 @@ export default function App() {
           <span><span className="text-[#F5A623]">●</span> 과제</span>
           <span><span className="text-[#BD10E0]">●</span> 연구자</span>
           <span><span className="text-[#D0021B]">●</span> 부처</span>
-          <span><span className="text-[#FFD700]">●</span> 질의 관련</span>
+          <span><span className="text-[#FFD700]">★</span> 질의 핵심</span>
         </div>
       </aside>
     </div>
