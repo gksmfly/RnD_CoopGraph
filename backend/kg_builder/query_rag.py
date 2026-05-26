@@ -59,11 +59,15 @@ _MERGE_HINT = (
     "중복 없이 간결하게 정리해줘)"
 )
 
+_rag_instance = None
+
 
 async def query_once(question: str, mode: str = "hybrid") -> str:
     """단일 질의 (외부에서 호출용)"""
-    rag = await get_query_rag()
-    return await rag.aquery(question + _MERGE_HINT, param=QueryParam(mode=mode, enable_rerank=False))
+    global _rag_instance
+    if _rag_instance is None:
+        _rag_instance = await get_query_rag()
+    return await _rag_instance.aquery(question + _MERGE_HINT, param=QueryParam(mode=mode, enable_rerank=False))
 
 
 if __name__ == "__main__":
